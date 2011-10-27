@@ -1,0 +1,363 @@
+Arts & Entertainment
+	Arcade
+	Art Gallery
+	Bowling Alley
+	Casino
+	Comedy Club
+	General Entertainment
+	Historic Site
+	Movie Theater
+		Indie Movie Theater
+		Multiplex
+	Museum
+		Art Museum
+		History Museum
+		Planetarium
+		Science Museum
+	Music Venue
+		Concert Hall
+			Jazz Club
+			Piano Bar
+			Rock Club
+	Performing Arts Venue
+		Concert Hall
+		Dance Studio
+		Indie or Off Broadway Theater
+		Opera House
+		Theater
+	Pool Hall
+	Racetrack
+	Stadium
+		Baseball Stadium
+		Basketball Stadium
+		Cricket Ground
+		Football Stadium
+		Hockey Stadium
+		Soccer Stadium
+		Tennis
+		Track
+	Strip Club
+	Theme Park
+	Water Park
+	Zoo or Aquarium
+College & University
+	College Academic Building
+		College Arts Building
+		College Communications Building
+		College Engineering Building
+		College History Building
+		College Math Building
+		College Science Building
+		College Technology Building
+		College Administrative Building
+		College Auditorium
+		College Bookstore
+		College Cafeteria
+		College Classroom
+		College Dorm
+		College Gym
+		College Lab
+		College Library
+		College Quad
+		College Rec Center
+		College Stadium
+			College Baseball Diamond
+			College Basketball Court
+			College Cricket Pitch
+			College Football Field
+			College Hockey Rink
+			College Soccer Field
+			College Tennis Court
+			College Track
+		College Theater
+		Community College
+		Fraternity House
+		General College & University
+		Law School
+		Medical School
+		Sorority House
+		Student Center
+		Trade School
+		University
+Food
+	African Restaurant
+	American Restaurant
+	Arepa Restaurant
+	Argentinian Restaurant
+	Asian Restaurant
+	Australian Restaurant
+	BBQ Joint
+	Bagel Shop
+	Bakery
+	Brazilian Restaurant
+	Breakfast Spot
+	Brewery
+	Burger Joint
+	Burrito Place
+	Café
+	Cajun or Creole Restaurant
+	Caribbean Restaurant
+	Chinese Restaurant
+	Coffee Shop
+	Cuban Restaurant
+	Cupcake Shop
+	Deli or Bodega
+	Dessert Shop
+	Dim Sum Restaurant
+	Diner
+	Distillery
+	Donut Shop
+	Dumpling Restaurant
+	Eastern European Restaurant
+	Ethiopian Restaurant
+	Falafel Restaurant
+	Fast Food Restaurant
+	Food Court
+	Food Truck
+	French Restaurant
+	Fried Chicken Joint
+	Gastropub
+	German Restaurant
+	Gluten-free Restaurant
+	Greek Restaurant
+	Hot Dog Joint
+	Ice Cream Shop
+	Indian Restaurant
+	Indonesian Restaurant
+	Italian Restaurant
+	Japanese Restaurant
+	Juice Bar
+	Korean Restaurant
+	Latin American Restaurant
+	Mac & Cheese Joint
+	Malaysian Restaurant
+	Mediterranean Restaurant
+	Mexican Restaurant
+	Middle Eastern Restaurant
+	Molecular Gastronomy Restaurant
+	Moroccan Restaurant
+	New American Restaurant
+	Pizza Place
+	Portuguese Restaurant
+	Ramen or Noodle House
+	Restaurant
+	Salad Place
+	Sandwich Place
+	Scandinavian Restaurant
+	Seafood Restaurant
+	Snack Place
+	Soup Place
+	South American Restaurant
+	Southern or Soul Food Restaurant
+	Spanish Restaurant
+		Paella Restaurant
+	Steakhouse
+	Sushi Restaurant
+	Swiss Restaurant
+	Taco Place
+	Tapas Restaurant
+	Tea Room
+	Thai Restaurant
+	Vegetarian or Vegan Restaurant
+	Vietnamese Restaurant
+	Winery
+	Wings Joint
+Great Outdoors
+	Baseball Field
+	Basketball Court
+	Beach
+		Surf Spot
+	Bridge
+	Campground
+	Cemetery
+	Dog Run
+	Farm
+	Field
+	Garden
+	Golf Course
+	Harbor or Marina
+	Hiking Trail
+	Hot Spring
+	Lake
+	Lighthouse
+	Other Great Outdoors
+	Park
+	Playground"
+	Plaza
+	Pool
+	Scenic Lookout
+	Sculpture Garden
+	Skate Park
+	Skating Rink
+	Ski Area
+		Apres Ski Bar
+		Ski Chalet
+		Ski Lodge
+	Soccer Field
+	Tennis Court
+	Vineyard
+Nightlife Spot
+	Bar
+	Beer Garden
+	Brewery
+	Cocktail Bar
+	Dive Bar
+	Gay Bar
+	Hookah Bar
+	Hotel Bar
+	Karaoke Bar
+	Lounge
+	Music Venue
+		Concert Hall
+		Jazz Club
+		Piano Bar
+		Rock Club
+	Nightclub
+	Other Nightlife
+	Pub
+	Sake Bar
+	Speakeasy
+	Sports Bar
+	Strip Club
+	Whisky Bar
+	Wine Bar
+Professional & Other Places
+	Animal Shelter
+	Apartment Building / Condo Complex
+	Building
+	Convention Center
+		Meeting Room
+	Event Space
+	Government Building
+		Capitol Building
+		City Hall
+		Courthouse
+		Fire Station
+		Monument or Landmark
+		Police Station
+	Library
+	Medical Center
+		Dentist's Office
+		Doctor's Office
+		Emergency Room
+		Hospital
+		Optical Shop
+		Veterinarian
+	Military Base
+	Office
+		Auditorium
+		Cafeteria
+		Coworking Space
+		Tech Startup
+	Parking Garage
+	Post Office
+	Religious Center
+		Church
+		Mosque
+		Synagogue
+		Temple
+	School
+		High School
+	Voting Booth
+	Residence
+	Home
+	Shop & Service
+		Antique Shop
+		Arts & Crafts Store
+		Automotive Shop
+		Bank
+		Bike Shop
+		Board Shop
+		Bookstore
+		Bridal Shop
+		Candy Store
+		Clothing Store
+			Accessories Store
+			Boutique
+			Kids Store
+			Lingerie Store
+			Men's Store
+			Shoe Store
+			Women's Store
+		Convenience Store
+		Cosmetics Shop
+		Department Store
+		Design Studio
+		Drugstore or Pharmacy
+		Electronics Store
+		Flea Market
+		Flower Shop
+		Food and Drink Shop
+			Butcher
+			Cheese Shop
+			Deli or Bodega
+			Farmers Market
+			Fish Market
+			Food Court
+			Gourmet Shop
+			Grocery Store
+			Liquor Store
+			Wine Shop
+		Furniture or Home Store
+		Gaming Cafe
+		Gas Station or Garage
+		Gift Shop
+		Gym or Fitness Center
+			Gym
+			Martial Arts Dojo
+			Pool
+			Track
+			Yoga Studio
+		Hardware Store
+		Hobby Shop
+		Internet Cafe
+		Jewelry Store
+		Laundromat or Dry Cleaner
+		Mall
+		Miscellaneous Shop
+		Music Store
+		Paper or Office Supplies Store
+		Pet Store
+		Record Shop
+		Rental Car Location
+		Salon or Barbershop
+		Smoke Shop
+		Spa or Massage
+		Sporting Goods Shop
+		Tanning Salon
+		Tattoo Parlor
+		Thrift or Vintage Store
+		Toy or Game Store
+		Video Game Store
+		Video Store
+	Travel Spot
+		Airport
+			Airport Food Court
+			Airport Gate
+			Airport Rental Car Spot
+			Airport Terminal
+			Airport Tram
+			Plane
+		Bed & Breakfast
+		Bike Rental / Bike Share
+		Bus Station
+			Bus Line
+		Embassy or Consulate
+		Ferry
+			Boat or Ferry
+			Pier
+		General Travel
+		Highway or Road
+		Hostel
+		Hotel
+			Hotel Bar
+			Motel
+			Pool
+			Roof Deck
+		Light Rail
+		Resort
+		Rest Area
+		Subway
+		Taxi
+		Train Station
+			Train
