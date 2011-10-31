@@ -1,13 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<canvas width="300" height="350" id="myCanvas" style="border:1px solid #c3c3c3;">
+<div data-role="page" id="test" data-dom-cache="true">
+<div class="ui-bar ui-bar-b">
+	<h3>You are at <label id="label-location"></label>. <a href="http://lime.csie.ntu.edu.tw:5000/language-learner/" data-role="button">Change</a></h3>
+</div>
+<canvas width="320" height="350" id="myCanvas" style="border:1px solid #c3c3c3;">
 	<p>Anything in here will be replaced on browsers that support the canvas element</p>
 </canvas>
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery.wordcloud.js')}}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$.urlParam = function(name){
+    		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    return results[1] || 0;
+		}
+		var location_chinese = decodeURI($.urlParam('location')).split('|')[0].replace('+',' ');
+		var location_display = decodeURI($.urlParam('location')).split('|')[1].replace('+',' ');
+		$("#label-location").text(location_display+' ('+location_chinese+')');
+
 		var $r = $('#myCanvas');
 		$r.wordCloud({wordList: list_chinese, rotateRatio: 0, wordColor: 'language-learning'});
 		$("#myCanvas").click(function(e){
@@ -36,30 +48,6 @@
 		["椅子",35, 4, 0.4]];
 </script>
 
-<form action="upload.html" method="get">
-	<div>
-		You are at <input type="text" id="location" name="location" />
-	</div>
-	<script>
-		navigator.geolocation.getCurrentPosition(
-			function(pos) {
-				var url = $SCRIPT_ROOT + 
-							'/language-learner/location/' + 
-							pos.coords.latitude + ',' + pos.coords.longitude;
-				$.ajax(url, {
-					type: 'GET',
-					dataType: 'json',
-					success: function(json) {
-						$("#location").val(json.location);
-					},
-					error: function(xhr, msg, msg2) {
-						alert(xhr.status+','+msg+','+msg2);
-					}
-				});
-			});
-      </script>
-      <div>
-        <input type="submit" value="Update Location" />
-      </div>
-    </form>
+</div>
 {% endblock %}
+

@@ -1,1 +1,6 @@
 This is an application for language learning
+
+==========
+Dependency
+==========
+ - Flask: http://flask.pocoo.org/

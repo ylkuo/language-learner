@@ -23,11 +23,20 @@ def get_location(geo):
 	geo_long = geo[1]
 	location = Location()
 	json = {}
-	json['location'] = location.get_venues(geo_lat, geo_long)
+	venues = location.get_venues(geo_lat, geo_long)
+	output = []
+	for chinese, display in venues:
+		output.append({'display':display, 'chinese':chinese})
+	json['locations'] = output
 	return flask.jsonify(json)
 
-@app.route('/'+root+'/test/')
+@app.route('/'+root+'/')
+def select_context():
+	return flask.render_template('select-context.html')
+
+@app.route('/'+root+'/learn/')
 def test():
+	location = flask.request.args.get('location')
 	return flask.render_template('test.html')
 
 @app.errorhandler(404)
