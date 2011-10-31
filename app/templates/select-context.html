@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div data-role="page" id="select-context" data-dom-cache="true">
+<form action="http://lime.csie.ntu.edu.tw:5000/language-learner/learn/" method="get" data-ajax="false">
+	<div data-role="fieldcontain" id="location-select"></div>
+	<script>
+		navigator.geolocation.getCurrentPosition(
+			function(pos) {
+				var url = $SCRIPT_ROOT + 
+							'/language-learner/location/' + 
+							pos.coords.latitude + ',' + pos.coords.longitude;
+				$.ajax(url, {
+					type: 'GET',
+					dataType: 'json',
+					success: function(json) {
+						html = '<label for="location" class="select"> You are at </label>';
+						html = html + '<select id="location" name="location">';
+						for(var i = 0; i < json.locations.length; ++i) {
+							var location  = json.locations[i];
+							var text = location.display+' ('+location.chinese+')';
+							var value = location.chinese+'|'+location.display;
+							html = html + '<option value="'+value+'">'+text+'</option>';
+						}
+						html = html + '</select>';
+						var day = new Date();
+						var hour = day.getHours();
+						html = html +'<br /><labels> It is around <b>'+hour+':00</b>.</label>';
+						$("#location-select").append(html);
+					},
+					error: function(xhr, msg, msg2) {
+						alert(xhr.status+','+msg+','+msg2);
+					}
+				});
+			});
+      </script>
+      <div>
+        <input type="submit" value="Learn in this context!" />
+      </div>
+    </form>
+</div>
+{% endblock %}
+

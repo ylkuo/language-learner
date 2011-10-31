@@ -1,21 +1,21 @@
 Arts & Entertainment
 	Arcade
-	Art Gallery
-	Bowling Alley
-	Casino
-	Comedy Club
+	Art Gallery|藝廊|gallery
+	Bowling Alley|保齡球館
+	Casino|賭場
+	Comedy Club|俱樂部|club
 	General Entertainment
-	Historic Site
-	Movie Theater
+	Historic Site|古蹟
+	Movie Theater|電影院
 		Indie Movie Theater
 		Multiplex
-	Museum
+	Museum|博物館
 		Art Museum
 		History Museum
 		Planetarium
 		Science Museum
 	Music Venue
-		Concert Hall
+		Concert Hall|音樂廳
 			Jazz Club
 			Piano Bar
 			Rock Club
@@ -24,10 +24,10 @@ Arts & Entertainment
 		Dance Studio
 		Indie or Off Broadway Theater
 		Opera House
-		Theater
+		Theater|戲院
 	Pool Hall
 	Racetrack
-	Stadium
+	Stadium|體育館
 		Baseball Stadium
 		Basketball Stadium
 		Cricket Ground
@@ -37,10 +37,10 @@ Arts & Entertainment
 		Tennis
 		Track
 	Strip Club
-	Theme Park
-	Water Park
-	Zoo or Aquarium
-College & University
+	Theme Park|主題樂園
+	Water Park|水上樂園
+	Zoo or Aquarium|動物園/水族館
+College & University|大學
 	College Academic Building
 		College Arts Building
 		College Communications Building
@@ -51,25 +51,25 @@ College & University
 		College Technology Building
 		College Administrative Building
 		College Auditorium
-		College Bookstore
-		College Cafeteria
-		College Classroom
-		College Dorm
-		College Gym
-		College Lab
-		College Library
+		College Bookstore|書店|bookstore
+		College Cafeteria|餐廳|restaurant
+		College Classroom|教室|classroom
+		College Dorm|宿舍|dorm
+		College Gym|健身房|gym
+		College Lab|實驗室|lab
+		College Library|圖書館|library
 		College Quad
 		College Rec Center
-		College Stadium
-			College Baseball Diamond
-			College Basketball Court
+		College Stadium|體育館|stadium
+			College Baseball Diamond|棒球場|baseball field
+			College Basketball Court|籃球場|basketball court
 			College Cricket Pitch
 			College Football Field
 			College Hockey Rink
-			College Soccer Field
-			College Tennis Court
+			College Soccer Field|足球場|soccer field
+			College Tennis Court|網球場|tennis court
 			College Track
-		College Theater
+		College Theater|戲院|theater
 		Community College
 		Fraternity House
 		General College & University
@@ -79,7 +79,7 @@ College & University
 		Student Center
 		Trade School
 		University
-Food
+Food|餐廳|restaurant
 	African Restaurant
 	American Restaurant
 	Arepa Restaurant
@@ -88,31 +88,31 @@ Food
 	Australian Restaurant
 	BBQ Joint
 	Bagel Shop
-	Bakery
+	Bakery|麵包店
 	Brazilian Restaurant
-	Breakfast Spot
-	Brewery
-	Burger Joint
+	Breakfast Spot|早餐店
+	Brewery|酒廠|winery
+	Burger Joint|速食店|fast food restaurant
 	Burrito Place
-	Café
+	Café|咖啡廳
 	Cajun or Creole Restaurant
 	Caribbean Restaurant
 	Chinese Restaurant
-	Coffee Shop
+	Coffee Shop|咖啡廳|Café
 	Cuban Restaurant
-	Cupcake Shop
+	Cupcake Shop|蛋糕店|dessert shop
 	Deli or Bodega
-	Dessert Shop
+	Dessert Shop|蛋糕店
 	Dim Sum Restaurant
 	Diner
 	Distillery
-	Donut Shop
+	Donut Shop|麵包店|bakery
 	Dumpling Restaurant
 	Eastern European Restaurant
 	Ethiopian Restaurant
 	Falafel Restaurant
-	Fast Food Restaurant
-	Food Court
+	Fast Food Restaurant|速食店
+	Food Court|美食街
 	Food Truck
 	French Restaurant
 	Fried Chicken Joint
@@ -121,12 +121,12 @@ Food
 	Gluten-free Restaurant
 	Greek Restaurant
 	Hot Dog Joint
-	Ice Cream Shop
+	Ice Cream Shop|冰淇淋店
 	Indian Restaurant
 	Indonesian Restaurant
 	Italian Restaurant
 	Japanese Restaurant
-	Juice Bar
+	Juice Bar|飲料店|beverage store
 	Korean Restaurant
 	Latin American Restaurant
 	Mac & Cheese Joint
@@ -145,8 +145,8 @@ Food
 	Sandwich Place
 	Scandinavian Restaurant
 	Seafood Restaurant
-	Snack Place
-	Soup Place
+	Snack Place|小吃店
+	Soup Place|麵店
 	South American Restaurant
 	Southern or Soul Food Restaurant
 	Spanish Restaurant
@@ -156,34 +156,34 @@ Food
 	Swiss Restaurant
 	Taco Place
 	Tapas Restaurant
-	Tea Room
+	Tea Room|茶室
 	Thai Restaurant
 	Vegetarian or Vegan Restaurant
 	Vietnamese Restaurant
-	Winery
+	Winery|酒廠
 	Wings Joint
-Great Outdoors
-	Baseball Field
-	Basketball Court
-	Beach
+Great Outdoors|戶外
+	Baseball Field|棒球場
+	Basketball Court|籃球場
+	Beach|海灘
 		Surf Spot
-	Bridge
-	Campground
-	Cemetery
+	Bridge|橋
+	Campground|營地
+	Cemetery|墓地
 	Dog Run
-	Farm
+	Farm|農場
 	Field
-	Garden
-	Golf Course
-	Harbor or Marina
+	Garden|花園
+	Golf Course|高爾夫球場
+	Harbor or Marina|港口
 	Hiking Trail
-	Hot Spring
-	Lake
+	Hot Spring|溫泉
+	Lake|湖
 	Lighthouse
 	Other Great Outdoors
-	Park
-	Playground"
-	Plaza
+	Park|公園
+	Playground|遊樂場
+	Plaza|廣場
 	Pool
 	Scenic Lookout
 	Sculpture Garden
@@ -193,85 +193,85 @@ Great Outdoors
 		Apres Ski Bar
 		Ski Chalet
 		Ski Lodge
-	Soccer Field
-	Tennis Court
+	Soccer Field|足球場
+	Tennis Court|網球場
 	Vineyard
 Nightlife Spot
-	Bar
+	Bar|酒吧
 	Beer Garden
 	Brewery
-	Cocktail Bar
-	Dive Bar
-	Gay Bar
-	Hookah Bar
-	Hotel Bar
-	Karaoke Bar
+	Cocktail Bar|酒吧|bar
+	Dive Bar|酒吧|bar
+	Gay Bar|酒吧|bar
+	Hookah Bar|酒吧|bar
+	Hotel Bar|酒吧|bar
+	Karaoke Bar|卡拉ok
 	Lounge
 	Music Venue
 		Concert Hall
 		Jazz Club
 		Piano Bar
 		Rock Club
-	Nightclub
+	Nightclub|夜總會
 	Other Nightlife
-	Pub
-	Sake Bar
+	Pub|夜店
+	Sake Bar|酒吧|bar
 	Speakeasy
-	Sports Bar
-	Strip Club
-	Whisky Bar
-	Wine Bar
+	Sports Bar|酒吧|bar
+	Strip Club|夜總會|nightclub
+	Whisky Bar|酒吧|bar
+	Wine Bar|酒吧|bar
 Professional & Other Places
-	Animal Shelter
-	Apartment Building / Condo Complex
-	Building
-	Convention Center
-		Meeting Room
-	Event Space
+	Animal Shelter|動物收容所
+	Apartment Building / Condo Complex|公寓
+	Building|大廈
+	Convention Center|會議中心
+		Meeting Room|會議室
+	Event Space|活動中心
 	Government Building
 		Capitol Building
 		City Hall
 		Courthouse
-		Fire Station
+		Fire Station|消防局
 		Monument or Landmark
-		Police Station
-	Library
-	Medical Center
+		Police Station|警察局
+	Library|圖書館
+	Medical Center|醫院|hospital
 		Dentist's Office
 		Doctor's Office
-		Emergency Room
-		Hospital
-		Optical Shop
-		Veterinarian
+		Emergency Room|急診室
+		Hospital|醫院
+		Optical Shop|眼鏡店
+		Veterinarian|獸醫
 	Military Base
-	Office
+	Office|辦公室
 		Auditorium
-		Cafeteria
+		Cafeteria|咖啡廳|Café
 		Coworking Space
 		Tech Startup
-	Parking Garage
-	Post Office
+	Parking Garage|停車場
+	Post Office|郵局
 	Religious Center
-		Church
-		Mosque
+		Church|教堂
+		Mosque|清真寺
 		Synagogue
-		Temple
-	School
-		High School
+		Temple|廟
+	School|學校
+		High School|高中
 	Voting Booth
 	Residence
-	Home
-	Shop & Service
+	Home|家
+	Shop & Service|商店
 		Antique Shop
 		Arts & Crafts Store
 		Automotive Shop
-		Bank
+		Bank|銀行
 		Bike Shop
 		Board Shop
-		Bookstore
+		Bookstore|書店
 		Bridal Shop
-		Candy Store
-		Clothing Store
+		Candy Store|糖果店
+		Clothing Store|服飾店
 			Accessories Store
 			Boutique
 			Kids Store
@@ -279,85 +279,85 @@ Professional & Other Places
 			Men's Store
 			Shoe Store
 			Women's Store
-		Convenience Store
+		Convenience Store|便利商店
 		Cosmetics Shop
-		Department Store
+		Department Store|百貨公司
 		Design Studio
-		Drugstore or Pharmacy
+		Drugstore or Pharmacy|藥局
 		Electronics Store
-		Flea Market
-		Flower Shop
+		Flea Market|跳蚤市場
+		Flower Shop|花店
 		Food and Drink Shop
 			Butcher
 			Cheese Shop
-			Deli or Bodega
-			Farmers Market
-			Fish Market
-			Food Court
+			Deli or Bodega|雜貨店|grocery store
+			Farmers Market|菜市場
+			Fish Market|魚市場
+			Food Court|美食街
 			Gourmet Shop
-			Grocery Store
+			Grocery Store|雜貨店
 			Liquor Store
 			Wine Shop
-		Furniture or Home Store
+		Furniture or Home Store|家具店
 		Gaming Cafe
-		Gas Station or Garage
+		Gas Station or Garage|加油站
 		Gift Shop
-		Gym or Fitness Center
+		Gym or Fitness Center|健身房
 			Gym
 			Martial Arts Dojo
-			Pool
+			Pool|游泳池
 			Track
 			Yoga Studio
-		Hardware Store
+		Hardware Store|五金行
 		Hobby Shop
-		Internet Cafe
-		Jewelry Store
-		Laundromat or Dry Cleaner
-		Mall
+		Internet Cafe|網咖
+		Jewelry Store|珠寶店
+		Laundromat or Dry Cleaner|洗衣店
+		Mall|購物商場
 		Miscellaneous Shop
 		Music Store
 		Paper or Office Supplies Store
-		Pet Store
+		Pet Store|寵物店
 		Record Shop
 		Rental Car Location
-		Salon or Barbershop
+		Salon or Barbershop|理髮店
 		Smoke Shop
 		Spa or Massage
-		Sporting Goods Shop
+		Sporting Goods Shop|體育用品店
 		Tanning Salon
 		Tattoo Parlor
 		Thrift or Vintage Store
-		Toy or Game Store
-		Video Game Store
+		Toy or Game Store|玩具店
+		Video Game Store|電動玩具店
 		Video Store
 	Travel Spot
-		Airport
+		Airport|機場
 			Airport Food Court
 			Airport Gate
 			Airport Rental Car Spot
 			Airport Terminal
 			Airport Tram
 			Plane
-		Bed & Breakfast
+		Bed & Breakfast|旅館|hotel
 		Bike Rental / Bike Share
-		Bus Station
+		Bus Station|公車站
 			Bus Line
 		Embassy or Consulate
-		Ferry
+		Ferry|渡輪
 			Boat or Ferry
 			Pier
 		General Travel
-		Highway or Road
-		Hostel
-		Hotel
-			Hotel Bar
+		Highway or Road|公路
+		Hostel|旅館|hotel
+		Hotel|旅館
+			Hotel Bar|酒吧|bar
 			Motel
-			Pool
+			Pool|游泳池
 			Roof Deck
-		Light Rail
-		Resort
+		Light Rail|輕軌
+		Resort|度假村
 		Rest Area
-		Subway
-		Taxi
-		Train Station
+		Subway|地鐵
+		Taxi|計程車
+		Train Station|火車站
 			Train
