@@ -16,8 +16,8 @@
     		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
 		    return results[1] || 0;
 		}
-		var location_chinese = decodeURI($.urlParam('location')).split('|')[0].replace('+',' ');
-		var location_display = decodeURI($.urlParam('location')).split('|')[1].replace('+',' ');
+		var location_chinese = decodeURI($.urlParam('location')).split('|')[0].replace('%26', '/').replace('+',' ');
+		var location_display = decodeURI($.urlParam('location')).split('|')[1].replace('%26', '/').replace('+',' ');
 		$("#label-location").text(location_display+' ('+location_chinese+')');
 
 		var $r = $('#myCanvas');

@@ -4,7 +4,33 @@
 <div data-role="page" id="select-context" data-dom-cache="true">
 <form action="http://lime.csie.ntu.edu.tw:5000/language-learner/learn/" method="get" data-ajax="false">
 	<div data-role="fieldcontain" id="location-select"></div>
+	<div data-role="fieldcontain" id="time"></div>
+	<div data-role="fieldcontain" id="action-select"></div>
 	<script>
+		function changeAction(loc) {
+			var location = document.getElementById(loc).value;
+			var url = $SCRIPT_ROOT + 
+						'/language-learner/location/action/'+ location.split('|')[0];
+			$.ajax(url, {
+				type: 'GET',
+				dataType: 'json',
+				success: function(json) {
+					html = '<label for="action" class="select"> What do you want to do? </label>';
+					html = html + '<select id="action" name="action">';
+					for(var i = 0; i < json.actions.length; ++i) {
+						var action  = json.actions[i];
+						var text = action.display.toLowerCase()+' ('+action.chinese+')';
+						var value = action.chinese+'|'+action.display.toLowerCase();
+						html = html + '<option value="'+value+'">'+text+'</option>';
+					}
+					html = html + '</select>';
+					$("#action-select").html(html);
+				},
+				error: function(xhr, msg, msg2) {
+					alert(xhr.status+','+msg+','+msg2);
+				}
+			});
+		}
 		navigator.geolocation.getCurrentPosition(
 			function(pos) {
 				var url = $SCRIPT_ROOT + 
@@ -14,8 +40,8 @@
 					type: 'GET',
 					dataType: 'json',
 					success: function(json) {
-						html = '<label for="location" class="select"> You are at </label>';
-						html = html + '<select id="location" name="location">';
+						html = '<label for="location" class="select"> Where are you? </label>';
+						html = html + '<select id="location" name="location" onchange="changeAction(this.id)">';
 						for(var i = 0; i < json.locations.length; ++i) {
 							var location  = json.locations[i];
 							var text = location.display+' ('+location.chinese+')';
@@ -23,10 +49,12 @@
 							html = html + '<option value="'+value+'">'+text+'</option>';
 						}
 						html = html + '</select>';
+						$("#location-select").html(html);
 						var day = new Date();
 						var hour = day.getHours();
-						html = html +'<br /><labels> It is around <b>'+hour+':00</b>.</label>';
-						$("#location-select").append(html);
+						html = '<labels> It is around <b>'+hour+':00</b>.</label>';
+						$("#time").html(html);
+						changeAction('location');
 					},
 					error: function(xhr, msg, msg2) {
 						alert(xhr.status+','+msg+','+msg2);

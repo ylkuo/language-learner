@@ -4,6 +4,7 @@ import flask
 import os, sys
 import simplejson
 from context import Location
+from database import Database
 
 app = flask.Flask(__name__)
 
@@ -15,6 +16,8 @@ else:
 app_path = os.path.abspath(__file__).replace(\
 		os.path.basename(__file__), '').replace(\
 		os.path.abspath(__file__).split('/')[-2]+'/', 'app/')
+
+db = Database()
 
 @app.route('/'+root+'/location/<geo>')
 def get_location(geo):
@@ -28,6 +31,30 @@ def get_location(geo):
 	for chinese, display in venues:
 		output.append({'display':display, 'chinese':chinese})
 	json['locations'] = output
+	return flask.jsonify(json)
+
+@app.route('/'+root+'/location/action/<venue>')
+def get_action(venue):
+	json = {}
+	cmd = "SELECT id FROM location WHERE chinese_name = '%s'" \
+			% (venue)
+	location_id = db.query_db(cmd)[0][0]
+	cmd = "SELECT a.chinese_name, a.english_name FROM action AS a, \
+			location_action AS b WHERE b.location_id = %s AND \
+			a.id = b.action_id" % (location_id)
+	action_res = db.query_db(cmd)
+	output = []
+	flag_default = False
+	output.append({'display':'anything', 'chinese':u'任何事'})
+	for action in action_res:
+		chinese, display = action
+		output.append({'display':display, 'chinese':chinese})
+		if display == 'chat':
+			flag_default = True
+	default = {'display':'chat', 'chinese':u'聊天'}
+	if flag_default is False:
+		output.append(default)
+	json['actions'] = output
 	return flask.jsonify(json)
 
 @app.route('/'+root+'/')

@@ -3,7 +3,8 @@
 import simplejson
 import os
 import urllib, urllib2
-from fs_client import CLIENT_ID, CLIENT_SECRET
+from config_client import CLIENT_ID, CLIENT_SECRET
+from conceptnet_api import get_assertions
 
 data_path = os.path.abspath(__file__).replace(\
 		os.path.basename(__file__), '').replace(\
@@ -89,10 +90,26 @@ class Location():
 				if (chinese, display_name) not in near_categories:
 					near_categories.append((chinese, display_name))
 		return near_categories
-			
+		
+	def get_action_for_venue(self, chinese_name):
+		"""
+		Get actions that can be done in this venue.
+		Arguments (Required):
+			``chinese_name'': Chinese name of the venue
+		"""
+		if chinese_name is None or chinese_name.strip() == '':
+			return []
+		action = []
+		for assertion in get_assertions(chinese_name):
+			if assertion[0] == 'HasSubevent':
+				if assertion[1] == chinese_name:
+					action.append(assertion[2])
+		return action
 
 if __name__ == '__main__':
 	location = Location()
 	venues = location.get_venues('42.3609385', '-71.0876401')
 	for chinese, display in venues:
 		print chinese+', '+display
+		for action in location.get_action_for_venue(chinese.decode('utf-8')):
+			print ' - '+action.encode('utf-8')
