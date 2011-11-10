@@ -12,11 +12,11 @@ class ConceptCategory():
 		# AnalogySpace
 		A = divisi2.load(matrix_path)
 		self.A = A.normalize_all()
-		concept_axes, axis_weights, feature_axes = self.A.svd(k=100)
+		self.concept_axes, axis_weights, self.feature_axes = self.A.svd(k=100)
 		self.sim = divisi2.reconstruct_similarity(\
-				concept_axes, axis_weights, post_normalize=False)
+				self.concept_axes, axis_weights, post_normalize=False)
 		self.predict = divisi2.reconstruct(\
-				concept_axes, axis_weights, feature_axes)
+				self.concept_axes, axis_weights, self.feature_axes)
 		# Fast spreading activation
 		assoc = divisi2.load(data_path+'assoc_matrix_zh.smat')
 		self.assoc = assoc.normalize_all()
@@ -46,11 +46,11 @@ if __name__ == '__main__':
 		print concept[0].encode('utf-8')
 		print concept[1]
 	for concept in \
-			concept_category.spread.row_named(u'實驗室').top_items(n=20):
-		print concept[0].encode('utf-8')
-		print concept[1]	
-	for concept in \
 			concept_category.get_category_from_predict(\
 			[u'公車', u'火車', u'船', u'飛機']):
 		print concept[0].encode('utf-8')
 		print concept[1]
+	for concept in \
+			concept_category.spread.row_named(u'實驗室').top_items(n=20):
+		print concept[0].encode('utf-8')
+		print concept[1]	

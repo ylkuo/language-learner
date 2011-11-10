@@ -4,9 +4,13 @@ import sys, os
 import divisi2
 import MySQLdb
 from bing_translate import BingTranslate
+from collections import defaultdict
 from config_client import DB_SERVER, DB_NAME, DB_USER, DB_PASSWD
 from conceptnet_api import get_assertions
+from concept_category import ConceptCategory
 from context import Location
+from sklearn.cluster import AffinityPropagation
+from util import cosine_similarity
 
 data_path = os.path.abspath(__file__).replace(\
 		os.path.basename(__file__), '').replace(\
@@ -99,3 +103,101 @@ def update_location_actions():
 					VALUES (%s, %s)" % (location_id, action_id)
 			db.query_db(cmd)
 
+def update_location_concepts():
+	"""
+	Get related concepts of a location and store it in database.
+	"""
+	location = Location()
+	db = Database()
+	cmd = "SELECT * FROM location"
+	location_res = db.query_db(cmd)
+	for item in location_res:
+		location_id, location_name, location_chinese = item
+		for concept in location.get_concept_for_venue(location_chinese):
+			cmd = u"SELECT * FROM concept WHERE name = '%s'" \
+					% (concept)
+			concept_res = db.query_db(cmd)
+			if len(concept_res) > 0:
+				concept_id = concept_res[0][0]
+			else:
+				continue
+			cmd = "INSERT INTO location_concept (location_id, concept_id) \
+					VALUES (%s, %s)" % (location_id, concept_id)
+			db.query_db(cmd)
+
+def update_action_concepts():
+	"""
+	Get related concepts of an action and store it in database.
+	"""
+	location = Location()
+	db = Database()
+	cmd = "SELECT * FROM action"
+	action_res = db.query_db(cmd)
+	for item in action_res:
+		action_id, action_chinese, action_english = item
+		for concept in location.get_concept_for_venue(action_chinese):
+			cmd = u"SELECT * FROM concept WHERE name = '%s'" \
+					% (concept)
+			concept_res = db.query_db(cmd)
+			if len(concept_res) > 0:
+				concept_id = concept_res[0][0]
+			else:
+				continue
+			cmd = "INSERT INTO action_concept (action_id, concept_id) \
+					VALUES (%s, %s)" % (action_id, concept_id)
+			db.query_db(cmd)
+
+def cluster_concepts(context='location'):
+	"""
+	Cluster related concepts of a specific type to different categories
+	"""
+	db = Database()
+	concept_category = ConceptCategory()
+	cmd = "SELECT * FROM %s" % (context)
+	context_res = db.query_db(cmd)
+	concept_list = []
+	concept_matrix = []
+	for item in context_res:
+		concept_list = []
+		concept_matrix = []
+		context_id, context_name, context_chinese = item
+		cmd = "SELECT b.name, b.id FROM %s_concept AS a, concept AS b \
+				WHERE a.%s_id = %s AND a.concept_id = b.id" \
+				% (context, context, context_id)
+		concept_res = db.query_db(cmd)
+		if len(concept_res) == 0:
+			continue
+		for item in concept_res:
+			concept, concept_id = item
+			concept_vector = concept_category.concept_axes.row_named(concept)
+			concept_list.append((concept_id, concept))
+			concept_matrix.append(concept_vector)
+		# Run affinity propogation
+		S = cosine_similarity(concept_matrix, concept_matrix)
+		af = AffinityPropagation()
+		af.fit(S)
+		cluster_centers_indices = af.cluster_centers_indices_
+		labels = af.labels_
+		count = 0
+		clusters = defaultdict(list)
+		for label in labels:
+			clusters[\
+				concept_list[cluster_centers_indices[label]][1]].append(\
+				concept_list[count])
+			count += 1
+		category_num = 0
+		for key, value in clusters.items():
+			category_num += 1
+			for concept in value:
+				cmd = "UPDATE %s_concept SET category = %d WHERE \
+						%s_id = %s AND concept_id = %s" \
+						% (context, category_num, context, \
+						context_id, concept[0])
+				db.query_db(cmd)
+				print concept[1].encode('utf-8')+' ',
+			print ''
+		print '----------'
+		
+
+if __name__ == '__main__':
+	cluster_concepts('action')

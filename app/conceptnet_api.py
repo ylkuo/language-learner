@@ -23,7 +23,8 @@ def get_assertions(concept=None, lang='zh_TW', \
 		try:
 			result = simplejson.load(urllib2.urlopen(request))
 		except IOError, e:
-			result = simplejson.load(e)
+			return assertions
+			#result = simplejson.load(e)
 		flag_next = False
 		if 'error' in result.keys():
 			break
@@ -51,4 +52,7 @@ def get_assertions(concept=None, lang='zh_TW', \
 	return assertions
 
 if __name__ == '__main__':
-	print get_assertions(u'台大')
+	for assertion in get_assertions(\
+			concept=u'台大', lang='zh_TW', num_assertions=20):
+		print assertion[0]+" / "+assertion[1].encode('utf-8')+\
+				" / "+assertion[2].encode('utf-8')

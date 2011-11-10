@@ -147,7 +147,7 @@ if (!window.clearImmediate) {
 		if (!$.wordCloudSupported) return this;
 
 		var settings = {
-			fontFamily: '"Trebuchet MS", "Heiti TC", "微軟正黑體", "Arial Unicode MS", "Droid Fallback Sans", sans-serif',
+			fontFamily: '"Helvetica", "Trebuchet MS", "Heiti TC", "微軟正黑體", "Arial Unicode MS", "Droid Fallback Sans", sans-serif',
 			gridSize: 8,
 			ellipticity: 0.65,
 			center: false,

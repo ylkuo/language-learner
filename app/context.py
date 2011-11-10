@@ -106,6 +106,24 @@ class Location():
 					action.append(assertion[2])
 		return action
 
+	def get_concept_for_venue(self, chinese_name):
+		"""
+		Get related concepts of this venue.
+		Arguments (Required):
+			``chinese_name'': Chinese name of the venue
+		"""
+		if chinese_name is None or chinese_name.strip() == '':
+			return []
+		concepts = set()
+		for assertion in get_assertions(chinese_name):
+			if assertion[1] == chinese_name:
+				concept2 = assertion[2]
+			else:
+				concept2 = assertion[1]
+			concepts.add(concept2)
+		return list(concepts)
+
+
 if __name__ == '__main__':
 	location = Location()
 	venues = location.get_venues('42.3609385', '-71.0876401')
