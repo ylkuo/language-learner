@@ -5,10 +5,22 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
+	<style type="text/css">
+	div{font-family:"Helvetica", "Trebuchet MS", "Heiti TC", "微軟正黑體", "Arial Unicode MS";}
+	.title{font-weight:bold; font-size:50px; color:#1C75BC;}
+	.subtitle{font-weight:bold; font-size:25px; color:#2EC4F3;}
+	a:hover {position:relative; left:1px; top:1px; clip:rect()}
+	</style>
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
 
 	<script type=text/javascript>
 		var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+		function goBack(){
+			window.history.back()
+		}
 	</script>
-{% block body %}{% endblock %}
+{% block body %}
+{% endblock %}
+

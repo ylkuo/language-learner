@@ -16,6 +16,9 @@ data_path = os.path.abspath(__file__).replace(\
 		os.path.basename(__file__), '').replace(\
 		os.path.abspath(__file__).split('/')[-2]+'/', 'data/')
 
+path = os.path.abspath(__file__).replace(\
+        os.path.basename(__file__), '')
+
 class Database:
 	def __init__(self, is_debug=0):
 		# define db
@@ -30,14 +33,20 @@ class Database:
 		return
 
 	def link_db(self, is_debug=0):
-		db = MySQLdb.connect(host=self.server, user=self.DB_username, passwd=self.password, 
-				     db=self.database, use_unicode = True, charset = "utf8")
+		db = MySQLdb.connect(host=self.server, user=self.DB_username, \
+					passwd=self.password, db=self.database, \
+					use_unicode = True, charset = "utf8")
 		self.cursor = db.cursor()
 		return self.cursor
 
 	def query_db(self, cmd, is_debug=0):
-		self.cursor.execute(cmd) 
-		result = self.cursor.fetchall()
+		try:
+			self.cursor.execute(cmd) 
+			result = self.cursor.fetchall()
+		except (AttributeError, MySQLdb.OperationalError):
+			self.cursor = self.link_db(is_debug)
+			self.cursor.execute(cmd) 
+			result = self.cursor.fetchall()
 		return result
 
 def add_concepts(matrix_path=data_path+'feature_matrix_zh.smat'):
@@ -197,7 +206,55 @@ def cluster_concepts(context='location'):
 				print concept[1].encode('utf-8')+' ',
 			print ''
 		print '----------'
+
+def download_concept_image():
+	"""
+	Download and update image file path for each concept.
+	"""
+	from image import Image
+	db = Database()
+	image = Image()
+	cmd = 'SELECT * FROM concept'
+	concept_res = db.query_db(cmd)
+	for concept in concept_res:
+		concept_id = concept[0]
+		concept_name = concept[1]
+		filename = image.get_image(concept_name, \
+				str(concept_id), path+'static/img/concept/')
+		cmd = 'UPDATE concept SET image_file = "%s" WHERE id = %s' \
+				% (filename, concept_id)
+		db.query_db(cmd)
 		
+def download_concept_audio():
+	"""
+	Download audio wav file for each concept.
+	"""
+	db = Database()
+	t = BingTranslate()
+	cmd = 'SELECT * FROM concept'
+	concept_res = db.query_db(cmd)
+	for concept in concept_res[15361:]:
+		concept_id = concept[0]
+		concept_name = concept[1]
+		filename = path+'static/audio/concept/'+str(concept_id)+'.wav'
+		print filename
+		t.get_speech(concept_name, filename, "zh-CHT")
+
+def update_concept_pinyin():
+	from pinyin import get_pinyin
+	db = Database()
+	cmd = 'SELECT * FROM concept'
+	concept_res = db.query_db(cmd)
+	for concept in concept_res:
+		concept_id = concept[0]
+		concept_name = concept[1]
+		pinyin = get_pinyin(concept_name).lower()
+		cmd = 'UPDATE concept SET pinyin = "%s" WHERE id = %s' \
+				% (pinyin, concept_id)
+		db.query_db(cmd)
 
 if __name__ == '__main__':
-	cluster_concepts('action')
+	#cluster_concepts('action')
+	#download_concept_image()
+	download_concept_audio()
+	#update_concept_pinyin()

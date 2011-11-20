@@ -1,12 +1,32 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<div data-role="page" id="select-context" data-dom-cache="true">
-<form action="http://lime.csie.ntu.edu.tw:5000/language-learner/learn/" method="get" data-ajax="false">
-	<div data-role="fieldcontain" id="location-select"></div>
-	<div data-role="fieldcontain" id="time"></div>
-	<div data-role="fieldcontain" id="action-select"></div>
+<div data-role="page" id="select-context" data-dom-cache="true" style="background-image:url({{url_for('static', filename='img/menu_long.png')}}); background-size:320px; text-align: center;">
+	<div style="position:absolute; top:5px; left:5px;">Hi <label id="user"></label>!</div>
+<form name="context" action="http://lime.csie.ntu.edu.tw:5000/language-learner/learn/" method="get" data-ajax="false">
+	<div data-role="fieldcontain" id="location-select" style="position:absolute; top:100px; left:40px; border-style:none;"></div>
+	<!--<div data-role="fieldcontain" id="time"></div>-->
+	<div data-role="fieldcontain" id="action-select" style="position:absolute; top:165px; left:75px; border-style:none;"></div>
 	<script>
+		$.urlParam = function(name){
+    		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    return results[1] || 0;
+		}
+		var email = decodeURI($.urlParam('email'));
+		var url = $SCRIPT_ROOT + '/language-learner/login/'+ email;
+		$.ajax(url, {
+			type: 'GET',
+			dataType: 'json',
+			success: function(json) {
+				sessionStorage['user'] = json.user;
+				sessionStorage['user_id'] = json.user_id;
+				$("#user").text(sessionStorage['user']);
+			},
+			error: function(xhr, msg, msg2) {
+				alert(xhr.status+','+msg+','+msg2);
+			}
+		});
+
 		function changeAction(loc) {
 			var location = document.getElementById(loc).value;
 			var url = $SCRIPT_ROOT + 
@@ -15,8 +35,7 @@
 				type: 'GET',
 				dataType: 'json',
 				success: function(json) {
-					html = '<label for="action" class="select"> What do you want to do? </label>';
-					html = html + '<select id="action" name="action">';
+					html = '<select id="action" name="action">';
 					for(var i = 0; i < json.actions.length; ++i) {
 						var action  = json.actions[i];
 						var text = action.display.toLowerCase()+' ('+action.chinese+')';
@@ -40,8 +59,7 @@
 					type: 'GET',
 					dataType: 'json',
 					success: function(json) {
-						html = '<label for="location" class="select"> Where are you? </label>';
-						html = html + '<select id="location" name="location" onchange="changeAction(this.id)">';
+						html = '<select id="location" name="location" onchange="changeAction(this.id)">';
 						for(var i = 0; i < json.locations.length; ++i) {
 							var location  = json.locations[i];
 							var text = location.display+' ('+location.chinese+')';
@@ -53,7 +71,7 @@
 						var day = new Date();
 						var hour = day.getHours();
 						html = '<labels> It is around <b>'+hour+':00</b>.</label>';
-						$("#time").html(html);
+						//$("#time").html(html);
 						changeAction('location');
 					},
 					error: function(xhr, msg, msg2) {
@@ -61,11 +79,17 @@
 					}
 				});
 			});
-      </script>
-      <div>
-        <input type="submit" value="Learn in this context!" />
-      </div>
-    </form>
+		$("#select-context").click(function(e){
+			var $r = $('#select-context');
+			var x = Math.floor((e.pageX-$r.offset().left));
+			var y = Math.floor((e.pageY-$r.offset().top));
+			if(x < 199 && x > 118 && y < 317 && y > 237) {
+				document.context.submit();
+			}
+		});
+	</script>
+		<!--<input type="submit" value="Learn in this context!" />-->
+</form>
 </div>
 {% endblock %}
 

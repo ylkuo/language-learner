@@ -23,12 +23,16 @@ class Image():
 
 	def get_image(self, concept, filename, dirname):
 		response = self.bing.search_image(concept.encode('utf-8'))
+		if 'Results' not in response['SearchResponse']['Image'].keys():
+			return None
 		for result in response['SearchResponse']['Image']['Results']:
 			image_url = result['MediaUrl']
-			extension = image_url.split('.')[-1]
+			thumbnail_url = result['Thumbnail']['Url']
+			extension = image_url.split('.')[-1].split('&')[0].split('?')[0]
 			content_type = result['Thumbnail']['ContentType']
 			new_filename = filename+'.'+extension
-			if self._download(image_url, dirname+new_filename, content_type) is True:
+			print new_filename
+			if self._download(thumbnail_url, dirname+new_filename, content_type) is True:
 				return new_filename
 			else:
 				continue

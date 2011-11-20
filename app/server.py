@@ -30,6 +30,12 @@ def get_location(geo):
 	output = []
 	for chinese, display in venues:
 		output.append({'display':display, 'chinese':chinese})
+	cmd = "SELECT * FROM location"
+	location_res = db.query_db(cmd)
+	for venue in location_res:
+		json_venue = {'display':venue[1], 'chinese':venue[2]}
+		if json_venue not in output:
+			output.append(json_venue)
 	json['locations'] = output
 	return flask.jsonify(json)
 
@@ -44,27 +50,87 @@ def get_action(venue):
 			a.id = b.action_id" % (location_id)
 	action_res = db.query_db(cmd)
 	output = []
-	flag_default = False
 	output.append({'display':'anything', 'chinese':u'任何事'})
 	for action in action_res:
 		chinese, display = action
 		output.append({'display':display, 'chinese':chinese})
-		if display == 'chat':
-			flag_default = True
-	default = {'display':'chat', 'chinese':u'聊天'}
-	if flag_default is False:
-		output.append(default)
 	json['actions'] = output
 	return flask.jsonify(json)
 
+@app.route('/'+root+'/location/<venue>/concept')
+def get_concept(venue):
+	json = {}
+	cmd = "SELECT id FROM location WHERE chinese_name = '%s'" \
+			% (venue)
+	location_id = db.query_db(cmd)[0][0]
+	cmd = "SELECT a.name, b.category, a.difficulty FROM concept AS a, \
+			location_concept AS b WHERE b.location_id = %s AND \
+			a.id = b.concept_id ORDER BY a.difficulty" % (location_id)
+	concept_res = db.query_db(cmd)
+	output = []
+	for concept in concept_res:
+		chinese, category, difficulty = concept
+		output.append({'chinese':chinese, 'category':category, \
+						'difficulty':difficulty})
+	json['concepts'] = output
+	return flask.jsonify(json)
+
+@app.route('/'+root+'/concept/<concept>')
+def get_concept_info(concept):
+	json = {}
+	cmd = "SELECT * FROM concept WHERE name = '%s'" % (concept)
+	concept_res = db.query_db(cmd)
+	concept = concept_res[0]
+	output = []
+	#TODO: We need to have intermediate certificate 
+	#      to access audio from flask server.
+	audio_file = \
+			'http://lime.csie.ntu.edu.tw/~a33kuo/language-learner/audio/concept/' \
+			+ str(concept[0]) + '.wav'
+	if concept[5] != None and concept[5] != '':
+		image_file = flask.url_for('static', \
+				filename='img/concept/'+concept[5])
+	else:
+		image_file = 'None'
+	output.append({'chinese':concept[1], 'image':image_file, \
+					'pinyin':concept[6], 'audio':audio_file})
+	json['concept'] = output
+	return flask.jsonify(json)
+
+@app.route('/'+root+'/login/<email>')
+def login(email):
+	json = {}
+	cmd = "SELECT * FROM user WHERE email = '%s'" % (email)
+	user_res = db.query_db(cmd)
+	if len(user_res) <= 0:
+		cmd = u"INSERT INTO user (email) VALUES ('%s')" % (email)
+		db.query_db(cmd)
+	cmd = "SELECT * FROM user WHERE email = '%s'" % (email)
+	user_res = db.query_db(cmd)
+	json['user'] = email.split('@')[0]
+	json['user_id'] = user_res[0][0]
+	return flask.jsonify(json)
+
 @app.route('/'+root+'/')
+def index():
+	return flask.render_template('index.html')
+
+@app.route('/'+root+'/menu/')
 def select_context():
 	return flask.render_template('select-context.html')
 
 @app.route('/'+root+'/learn/')
-def test():
+def overview():
 	location = flask.request.args.get('location')
-	return flask.render_template('test.html')
+	return flask.render_template('overview.html')
+
+@app.route('/'+root+'/learn/front/')
+def learn_front():
+	return flask.render_template('learn-front.html')
+
+@app.route('/'+root+'/learn/back/')
+def learn_back():
+	return flask.render_template('learn-back.html')
 
 @app.errorhandler(404)
 def not_found(error):
@@ -72,4 +138,4 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-	app.run(host='0.0.0.0')
+	app.run(debug=True, host='0.0.0.0')

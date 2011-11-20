@@ -40,6 +40,7 @@ class ConceptCategory():
 
 if __name__ == '__main__':
 	concept_category = ConceptCategory()
+	'''
 	for concept in \
 			concept_category.get_category_from_sim(\
 			[u'公車', u'火車', u'船', u'飛機']):
@@ -50,7 +51,8 @@ if __name__ == '__main__':
 			[u'公車', u'火車', u'船', u'飛機']):
 		print concept[0].encode('utf-8')
 		print concept[1]
+	'''
 	for concept in \
-			concept_category.spread.row_named(u'實驗室').top_items(n=20):
+			concept_category.spread.row_named(u'不健康').top_items(n=20):
 		print concept[0].encode('utf-8')
 		print concept[1]	

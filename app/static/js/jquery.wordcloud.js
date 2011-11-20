@@ -155,7 +155,7 @@ if (!window.clearImmediate) {
 			maskColor: 'rgba(255,0,0,0.3)',
 			maskGridWidth: 0.3,
 			wordColor: 'random-dark',
-			backgroundColor: '#fff',  //opaque white = rgba(255, 255, 255, 1)
+			backgroundColor: 'rgba(255, 255, 255, 0)', //'#fbb040',  //opaque white = rgba(255, 255, 255, 1)
 			wait: 0,
 			abortThreshold: 0, // disabled
 			abort: $.noop,
@@ -199,13 +199,17 @@ if (!window.clearImmediate) {
 					break;
 					case 'language-learning':
 						// ylkuo: specify the color according to the category and opacity according to the relatedness
-						var colors = [[0, 0, 205], [0, 0, 0], [34, 139, 34], 
-									  [139, 69, 19], [255, 0, 0], [160, 32, 240], 
-									  [255, 20, 147]]
-						return 'rgba('
-							+ colors[category][0].toString(10) + ','
-							+ colors[category][1].toString(10) + ','
-							+ colors[category][2].toString(10) + ', ' + relevance.toString(10) + ')';
+						//var colors = [[0, 0, 205], [0, 0, 0], [34, 139, 34], 
+						//			  [139, 69, 19], [255, 0, 0], [160, 32, 240], 
+						//			  [255, 20, 147]]
+						var colors = ['D1223C', '1C75BC', '2EC4F3', 
+									'414042', '9E1F63', 'A97C50', 
+									'662D91', '006838', 'F15A29', '49B67F']
+						//return 'rgba('
+						//	+ colors[category][0].toString(10) + ','
+						//	+ colors[category][1].toString(10) + ','
+						//	+ colors[category][2].toString(10) + ', ' + relevance.toString(10) + ')';
+						return colors[category];
 					break;
 					default:
 					if (typeof settings.wordColor !== 'function') {
@@ -354,6 +358,13 @@ if (!window.clearImmediate) {
 									ctx.clearRect(Math.floor(gxy[0]*g + (gw*g - w)/2), Math.floor(gxy[1]*g + (gh*g - h)/2), w, h);
 									ctx.drawImage(fc, Math.floor(gxy[0]*g + (gw*g - w)/2), Math.floor(gxy[1]*g + (gh*g - h)/2), w, h);
 								} else {
+									// ylkuo: add rounded box for each word
+									ctx.fillStyle = "#FFF0AC";
+									ctx.globalAlpha = 0.7;
+									//ctx.strokeStyle="#000";
+									ctx.lineWidth = 0;
+									roundRect(ctx, gxy[0]*g + (gw*g - w)/2, gxy[1]*g + (gh*g - h)/2, w-7, h, 10, true, false);
+									ctx.globalAlpha = 1;
 									ctx.font = fontSize.toString(10) + 'px ' + settings.fontFamily;
 									ctx.fillStyle = wordColor(word, weight, fontSize, category, relevance, R-r, gxy[2]);
 									ctx.fillText(word, gxy[0]*g + (gw*g - w)/2, gxy[1]*g + (gh*g - h)/2);
@@ -510,4 +521,45 @@ if (!window.clearImmediate) {
 			}
 		});
 	}
+
+/**
+ * Added by ylkuo:
+ * Draws a rounded rectangle using the current state of the canvas. 
+ * If you omit the last three params, it will draw a rectangle 
+ * outline with a 5 pixel border radius 
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {Number} x The top left x coordinate
+ * @param {Number} y The top left y coordinate 
+ * @param {Number} width The width of the rectangle 
+ * @param {Number} height The height of the rectangle
+ * @param {Number} radius The corner radius. Defaults to 5;
+ * @param {Boolean} fill Whether to fill the rectangle. Defaults to false.
+ * @param {Boolean} stroke Whether to stroke the rectangle. Defaults to true.
+ */
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+	if (typeof stroke == "undefined" ) {
+		stroke = true;
+	}
+	if (typeof radius === "undefined") {
+		radius = 5;
+	}
+	ctx.beginPath();
+	ctx.moveTo(x + radius, y);
+	ctx.lineTo(x + width - radius, y);
+	ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+	ctx.lineTo(x + width, y + height - radius);
+	ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+	ctx.lineTo(x + radius, y + height);
+	ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+	ctx.lineTo(x, y + radius);
+	ctx.quadraticCurveTo(x, y, x + radius, y);
+	ctx.closePath();
+	if (stroke) {
+		ctx.stroke();
+	}
+	if (fill) {
+		ctx.fill();
+	}        
+}
+
 })(jQuery);
