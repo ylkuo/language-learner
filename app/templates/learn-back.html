@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div data-role="page" id="learn-page" data-dom-cache="true" style="background-image:url({{url_for('static', filename='img/learn_card_back.png')}}); background-size:320px; text-align: center;">
+<div data-role="content" id="audio">
+	<audio id="soundHandle" preload="auto" autobuffer style="display:none"></audio>
+</div>
+<div data-role="content" id="learn" text-align: center;></div>
+<script type="text/javascript">
+		$.urlParam = function(name){
+    		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    return results[1] || 0;
+		}
+		var concept_chinese = decodeURI($.urlParam('concept'));
+		var url = $SCRIPT_ROOT + 
+				'/language-learner/concept/'+ concept_chinese+'/dialog/';
+/*
+		$.ajax(url, {
+			type: 'GET',
+			dataType: 'json',
+			success: function(json) {
+				var html;
+				$("#learn").html(html);
+			},
+			error: function(xhr, msg, msg2) {
+				alert(xhr.status+','+msg+','+msg2);
+			}
+		});
+*/
+		function play_audio(audio_file){
+			var soundHandle = document.getElementById('soundHandle');
+			soundHandle.play();
+		}
+		$("#learn-page").click(function(e){
+			var $r = $('#learn-page');
+			var x = Math.floor((e.pageX-$r.offset().left));
+			var y = Math.floor((e.pageY-$r.offset().top));
+			if(x < 319 && x > 244 && y < 477 && y > 407) {
+				goBack();
+			}
+		});
+</script>
+</div>
+{% endblock %}
+
