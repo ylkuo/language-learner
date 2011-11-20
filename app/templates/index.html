@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+<script type="text/javascript">
+function redirect() {
+	document.location.href = "http://lime.csie.ntu.edu.tw:5000/language-learner/menu/";
+}
+$(document.getElementsByTagName('div')[0]).ready(function() {
+	//setTimeout("redirect()", 3000);
+});
+</script>
+
+<div data-role="page" id="select-context" data-dom-cache="true" style="background-image:url({{url_for('static', filename='img/welcome.png')}}); background-size:320px;">
+<form name="context" action="http://lime.csie.ntu.edu.tw:5000/language-learner/menu/" method="get" data-ajax="false">
+	<div style="position:absolute; top:300px; left:40px; border-style:none;">
+		E-mail: <input type="email" name="email" />
+		<input type="submit" value="Log in" /><br /></div>
+</form>
+</div>
+{% endblock %}
+
