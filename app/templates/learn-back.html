@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<div data-role="page" id="learn-page" data-dom-cache="true" style="background-image:url({{url_for('static', filename='img/learn_card_back.png')}}); background-size:320px; text-align: center;">
+<div data-role="page" id="learn-page" data-dom-cache="true" style="background-image:url({{url_for('static', filename='img/learn_card_back.png')}}); background-size:320px; text-align: left;">
 <div data-role="content" id="audio">
 	<audio id="soundHandle" preload="auto" autobuffer style="display:none"></audio>
 </div>
@@ -12,23 +12,39 @@
 		    return results[1] || 0;
 		}
 		var concept_chinese = decodeURI($.urlParam('concept'));
+		var location_chinese = decodeURI($.urlParam('location')).split('|')[0];
+		var action_chinese = decodeURI($.urlParam('action')).split('|')[0];
 		var url = $SCRIPT_ROOT + 
-				'/language-learner/concept/'+ concept_chinese+'/dialog/';
-/*
+				'/language-learner/concept/'+ concept_chinese+'/dialog/'+
+				location_chinese+'/'+action_chinese;
 		$.ajax(url, {
 			type: 'GET',
 			dataType: 'json',
 			success: function(json) {
-				var html;
+				var html = '';
+				if(!json.dialog){
+					html = "Sorry, we don't have dialog for this concept!";
+				}
+				else {
+					for(var i = 0; i < json.dialog.length; ++i) {
+						var sentence = json.dialog[i];
+						html = html + '<a href="#" onclick="play_audio(\''+sentence.audio+'\');"><img align="bottom" src=\'{{url_for("static", filename="img/learn_audio.png")}}\' style="width:70px;"/></a>';
+						html = html + '<span style="display:block; margin-left:15px;"><font size="5"><b>' +sentence.chinese+ '</b></font><br />';
+						html = html + '<font size="4"><b>' +sentence.english+ '</b></font></span><br /><br />';
+					}
+					html = html.replace(/\[/g, "<font color='#D1123C'>");
+					html = html.replace(/\]/g, "</font>");
+				}
 				$("#learn").html(html);
 			},
 			error: function(xhr, msg, msg2) {
 				alert(xhr.status+','+msg+','+msg2);
 			}
 		});
-*/
 		function play_audio(audio_file){
 			var soundHandle = document.getElementById('soundHandle');
+			soundHandle.setAttribute('src', audio_file);
+			soundHandle.load();
 			soundHandle.play();
 		}
 		$("#learn-page").click(function(e){

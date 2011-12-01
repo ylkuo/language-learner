@@ -18,7 +18,8 @@
 	<script type=text/javascript>
 		var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 		function goBack(){
-			window.history.back()
+			//window.history.back();
+			window.history.go(-1);
 		}
 	</script>
 {% block body %}

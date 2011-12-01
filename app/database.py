@@ -216,7 +216,7 @@ def download_concept_image():
 	image = Image()
 	cmd = 'SELECT * FROM concept'
 	concept_res = db.query_db(cmd)
-	for concept in concept_res:
+	for concept in concept_res[92606:]:
 		concept_id = concept[0]
 		concept_name = concept[1]
 		filename = image.get_image(concept_name, \
@@ -233,7 +233,7 @@ def download_concept_audio():
 	t = BingTranslate()
 	cmd = 'SELECT * FROM concept'
 	concept_res = db.query_db(cmd)
-	for concept in concept_res[15361:]:
+	for concept in concept_res[117599:]:
 		concept_id = concept[0]
 		concept_name = concept[1]
 		filename = path+'static/audio/concept/'+str(concept_id)+'.wav'
@@ -253,8 +253,22 @@ def update_concept_pinyin():
 				% (pinyin, concept_id)
 		db.query_db(cmd)
 
+def update_concept_english():
+	db = Database()
+	t = BingTranslate()
+	cmd = 'SELECT * FROM concept'
+	concept_res = db.query_db(cmd)
+	for concept in concept_res[90835:]:
+		concept_id = concept[0]
+		concept_name = concept[1]
+		english = t.translate(concept_name, "zh-CHT", "en").lower()
+		print english.encode('utf-8')
+		cmd = 'UPDATE concept SET english = "%s" WHERE id = %s' \
+				% (english, concept_id)
+		db.query_db(cmd)
+
 if __name__ == '__main__':
 	#cluster_concepts('action')
-	#download_concept_image()
-	download_concept_audio()
-	#update_concept_pinyin()
+	download_concept_image()
+	#download_concept_audio()
+	#update_concept_english()

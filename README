@@ -4,4 +4,5 @@ This is an application for language learning
 Dependency
 ==========
  - Flask: http://flask.pocoo.org/
- - ./aso -y -n < file
+ - adso: get pinyin
+ - pybing: use Bing image search

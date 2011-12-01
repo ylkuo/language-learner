@@ -2,7 +2,7 @@
 {% block body %}
 
 <div data-role="page" id="learn-page" data-dom-cache="true" style="background-image:url({{url_for('static', filename='img/learn_card_front.png')}}); background-size:320px; text-align: center;">
-	<a href="#" onclick="goBack()" style="position:absolute; top:5px; left:5px;"><img src="{{url_for('static', filename='img/button/back.png')}}" style="width:70px;" /></a>
+	<a href="#" onclick="go_overview()" style="position:absolute; top:5px; left:5px;"><img src="{{url_for('static', filename='img/button/back.png')}}" style="width:70px;" /></a>
 <div data-role="content" id="audio">
 	<audio id="soundHandle" preload="auto" autobuffer style="display:none"></audio>
 </div>
@@ -12,7 +12,13 @@
     		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
 		    return results[1] || 0;
 		}
+		function go_overview() {
+			window.location = 'http://lime.csie.ntu.edu.tw:5000/' + 
+					'language-learner/learn/?location=' +$.urlParam('location')+
+					'&action=' + $.urlParam('action');
+		}
 		var concept_chinese = decodeURI($.urlParam('concept'));
+		var location_chinese = decodeURI($.urlParam('location')).split('|')[0];
 		var url = $SCRIPT_ROOT + 
 				'/language-learner/concept/'+ concept_chinese;
 		$.ajax(url, {
@@ -22,12 +28,13 @@
 				var image_file = json.concept[0].image;
 				var audio_file = json.concept[0].audio;
 				var pinyin = json.concept[0].pinyin;
+				var concept_english = json.concept[0].english;
 				var soundHandle = document.getElementById('soundHandle');
 				soundHandle.setAttribute('src', audio_file);
 				soundHandle.load();
 				play_audio(audio_file);
 				html = '<div class="title">'+concept_chinese+'</div>\n';
-				html = html + '<div class="subtitle">'+pinyin+'</div><br />\n';
+				html = html + '<div class="subtitle">'+pinyin+' | '+concept_english+'</div><br />\n';
 				if(image_file != 'None') {
 					html = html + '<img src="'+image_file+'" /><br /><br />\n';
 				}
@@ -38,6 +45,30 @@
 				alert(xhr.status+','+msg+','+msg2);
 			}
 		});
+
+		url = $SCRIPT_ROOT + 
+				'/language-learner/user/'+sessionStorage["user_id"]+'/concept/'+concept_chinese+'/view';
+		$.ajax(url, {
+			type: 'GET',
+			dataType: 'json',
+			success: function(json) {
+			},
+			error: function(xhr, msg, msg2) {
+				alert(xhr.status+','+msg+','+msg2);
+			}
+		});
+		url = $SCRIPT_ROOT + 
+				'/language-learner/user/'+sessionStorage["user_id"]+'/location/'+location_chinese+'/concept/'+concept_chinese+'/view';
+		$.ajax(url, {
+			type: 'GET',
+			dataType: 'json',
+			success: function(json) {
+			},
+			error: function(xhr, msg, msg2) {
+				alert(xhr.status+','+msg+','+msg2);
+			}
+		});
+
 		function play_audio(audio_file){
 			var soundHandle = document.getElementById('soundHandle');
 			soundHandle.play();
@@ -48,7 +79,9 @@
 			var y = Math.floor((e.pageY-$r.offset().top));
 			if(x < 319 && x > 244 && y < 477 && y > 407) {
 				document.location.href = $SCRIPT_ROOT + 
-				'/language-learner/learn/back/?concept='+ concept_chinese;
+				'/language-learner/learn/back/?concept='+ concept_chinese +
+					'&location=' +$.urlParam('location')+
+                    '&action=' + $.urlParam('action');
 			}
 		});
 </script>

@@ -20,6 +20,7 @@
 			success: function(json) {
 				sessionStorage['user'] = json.user;
 				sessionStorage['user_id'] = json.user_id;
+				sessionStorage['email'] = email;
 				$("#user").text(sessionStorage['user']);
 			},
 			error: function(xhr, msg, msg2) {

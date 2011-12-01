@@ -2,7 +2,7 @@
 {% block body %}
 
 <div data-role="page" id="test" data-dom-cache="true" style="background-image:url({{url_for('static', filename='img/learn_long.png')}}); background-size:320px;">
-	<a href="#" onclick="goBack()" style="position:absolute; top:5px; left:5px;"><img src="{{url_for('static', filename='img/button/back.png')}}" style="width:70px;" /></a>
+	<a href="#" onclick="go_menu()" style="position:absolute; top:5px; left:5px;"><img src="{{url_for('static', filename='img/button/back.png')}}" style="width:70px;" /></a>
 	<div style="position:absolute; top:5px; left:80px;">You are in "<label id="label-location"></label>".</div>
 	<canvas width="310" height="350" id="myCanvas" style="position:absolute; top:40px; left:5px;">
 		<p>Anything in here will be replaced on browsers that support the canvas element</p>
@@ -12,55 +12,56 @@
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery.wordcloud.js')}}"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$.urlParam = function(name){
-    		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-		    return results[1] || 0;
+	$.urlParam = function(name){
+   		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	    return results[1] || 0;
+	}
+	function go_menu() {
+		window.location = $SCRIPT_ROOT + '/language-learner/menu/?email='+sessionStorage['email']; 
+	}
+	var location_chinese = decodeURI($.urlParam('location')).split('|')[0].replace('%26', '/').replace('+',' ');
+	var location_display = decodeURI($.urlParam('location')).split('|')[1].replace('%26', '/').replace('+',' ');
+	$("#label-location").text(location_display+' ('+location_chinese+')');
+	var action_chinese = decodeURI($.urlParam('action')).split('|')[0].replace('%26', '/').replace('+',' ');
+	var action_display = decodeURI($.urlParam('action')).split('|')[1].replace('%26', '/').replace('+',' ');
+
+	var url = $SCRIPT_ROOT + 
+			'/language-learner/location/'+ location_chinese + 
+			'/' +action_chinese+ '/concept/user/' +sessionStorage['user_id'];
+	var list_chinese = [];
+	var $r = $('#myCanvas');
+	$.ajax(url, {
+		type: 'GET',
+		dataType: 'json',
+		success: function(json) {
+			for(var i = 0; i < json.concepts.length; ++i) {
+				var concept = json.concepts[i];
+				var concept_vector = [concept.chinese, concept.font_size, concept.category, 1];
+				list_chinese.push(concept_vector);
+			}
+			$r.wordCloud({wordList: list_chinese, rotateRatio: 0, wordColor: 'language-learning'});
+		},
+		error: function(xhr, msg, msg2) {
+			alert(xhr.status+','+msg+','+msg2);
 		}
-		var location_chinese = decodeURI($.urlParam('location')).split('|')[0].replace('%26', '/').replace('+',' ');
-		var location_display = decodeURI($.urlParam('location')).split('|')[1].replace('%26', '/').replace('+',' ');
-		$("#label-location").text(location_display+' ('+location_chinese+')');
-
-		var url = $SCRIPT_ROOT + 
-				'/language-learner/location/'+ location_chinese +'/concept';
-		var list_chinese = [];
-		var $r = $('#myCanvas');
-		$.ajax(url, {
-			type: 'GET',
-			dataType: 'json',
-			success: function(json) {
-				for(var i = 0; i < json.concepts.length; ++i) {
-					var concept = json.concepts[i];
-					var concept_vector = [concept.chinese, 50, concept.category, 1];
-					if(concept.category < 7 && concept.difficulty < 0.4) {
-						list_chinese.push(concept_vector);
-					}
-				}
-				$r.wordCloud({wordList: list_chinese, rotateRatio: 0, wordColor: 'language-learning'});
-			},
-			error: function(xhr, msg, msg2) {
-				alert(xhr.status+','+msg+','+msg2);
-			}
-		});
-		$("#myCanvas").click(function(e){
-			var x = Math.floor((e.pageX-$r.offset().left));
-			var y = Math.floor((e.pageY-$r.offset().top));
-			for(var i = 0; i < list_chinese.length; ++i) {
-				var position = sessionStorage[list_chinese[i][0]].split(",");
-				if (x<position[2] && x>position[0]) {
-					if (y<position[3] && y>position[1]) {
-						var url = $SCRIPT_ROOT + 
-								'/language-learner/learn/front?concept='+ list_chinese[i][0];
-						window.location = url;
-						list_chinese[i][1] -= 3;
-						$r.wordCloud({wordList: list_chinese, rotateRatio: 0, wordColor: 'language-learning'});
-						break;
-					}
-				}
-			}
-		});
 	});
-
+	$("#myCanvas").click(function(e){
+		var x = Math.floor((e.pageX-$r.offset().left));
+		var y = Math.floor((e.pageY-$r.offset().top));
+		for(var i = 0; i < list_chinese.length; ++i) {
+			var position = sessionStorage[list_chinese[i][0]].split(",");
+			if (x<position[2] && x>position[0]) {
+				if (y<position[3] && y>position[1]) {
+					var url = $SCRIPT_ROOT + 
+							'/language-learner/learn/front?concept='+ list_chinese[i][0] 
+							+'&location='+ $.urlParam('location') 
+							+'&action=' +$.urlParam('action');
+					window.location = url;
+					break;
+				}
+			}
+		}
+	});
 </script>
 
 </div>
