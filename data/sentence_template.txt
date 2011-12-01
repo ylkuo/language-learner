@@ -1,0 +1,650 @@
+==========
+|任何事
+++++++++++
+你好	Hello
+----------
+再見	Goodbye
+----------
+對不起	I'm sorry
+沒關係	That's all right
+----------
+謝謝	Thank you
+不客氣	You're welcome
+----------
+[明天]見	See you [tomorrow]
+----------
+休息一會兒	Have a rest
+好吧	All right
+----------
+[今天]是幾號?	What day is [today]?
+[今天]是[五]月[二十三]號	[Today] is [May] [23rd]
+----------
+[明天]是星期幾?	What day of the week is [tomorrow]?
+[明天]是[星期六]	[Tomorrow] is [Saturday]
+----------
+你是哪一年出生的?	Which year were you born in?
+我是[1976]年出生	I was born in [1976]
+----------
+[你]的[生日]是幾月幾號?	When is [your] [birthday]?
+[我]的[生日]是[三]月[五]號	[My] [birthday] is on [March] [fifth].
+----------
+你今年幾歲?	How old are you this year?
+我今年[三十]歲	I'm 30
+----------
+現在幾點?	What time is it?
+現在[八]點[十]分	It is 8:10
+----------
+你幾點[起床]?	What time do you [wake up]?
+我[六]點[三十]分[起床]	I [wake up] at 6:30.
+----------
+你[每天]幾點[起床]?	What time do you [wake up] [everyday]?
+我[六]點[三十]分[起床]	I [wake up] at 6:30.
+----------
+[起床]以後,我[吃早餐]	After [waking up], I [have breakfast]
+----------
+你明天有空嗎?	Are you free tomorrow?
+我明天有事	I'm going to be all tied up tomorrow
+----------
+明天能在見到你嗎?	Can I see you tomorrow?
+我明天有事	I'm going to be all tied up tomorrow
+----------
+我們幾點見?	What time shall we meet?
+[三]點如何?	How about [3]:00?
+----------
+我們在哪裡見?	Where shall we meet?
+[星巴克]	[Starbucks]
+==========
+機場|
+++++++++++
+這是哪個國家	What country is this?
+這是[中國]	This is [China]
+----------
+那是[台灣]嗎?	Is that [Taiwan]?
+那是[台灣]	That is [Taiwan]
+----------
+那是[台灣]嗎?	Is that [Taiwan]?
+那不是[台灣]	That is not [Taiwan]
+----------
+這是哪裡?	Where is this?
+這是[北京]	This is [Beijing]
+----------
+你去什麼地方?	What place are you going?
+我去[台北]	I go to [Taipei]
+----------
+你是哪裡人?	Where are you from?
+[台北]人	Taipei
+----------
+[台北][大]嗎?	Is [Taipei] [big]?
+[台北]不[大]	[Taipei] is not [big]
+----------
+[今天]是幾號?	What day is [today]?
+[今天]是[五]月[二十三]號	[Today] is [May] [23rd]
+----------
+[明天]是星期幾?	What day of the week is [tomorrow]?
+[明天]是[星期六]	[Tomorrow] is [Saturday]
+----------
+你是什麼時候到[北京]?	When did you arrive in [Beijing]?
+我是[八]月[七]號到[北京]的	I arrived on August 7th
+----------
+你想哪天去[上海]?	When do you want to go to [Shanghai]?
+我想[三]月[五]號去[上海]	I want to go to [Shanghai] on [March] [5th]
+==========
+學校|
+++++++++++
+你什麼時候[上課]?	What time do you [have class]?
+我[早上][八]點[上課]	I [have class] at [8 am]
+----------
+[早上]你去哪裡?	Where do you go this [morning]?
+我去[學校]	I go to the [school]
+----------
+你為什麼去[學校]?	Why do you go to [school]?
+我去[考試]	I go to [have a test]
+----------
+你和誰一起去?	Who are you going with?
+我和我的[朋友]一起去	I go with my [friend]
+----------
+[下午]你有空嗎?	Do you have free time [this afternoon]?
+我沒有空	I don't have free time
+----------
+[下午]你有空嗎?	Do you have free time [this afternoon]?
+我有空	I have free time
+----------
+我們一起去[吃飯],好嗎?	We go together to eat, ok?
+好	ok
+----------
+我們一起去[餐廳][吃飯],好嗎?	We go together to eat in a restaurant, ok?
+好	ok
+==========
+商店|
+++++++++++
+你要去哪裡?	Where are you going?
+我去[商店][買東西]	I'm going to [store] to [buy grocery]
+----------
+這是什麼?	What is this?
+這是[書]	This is a [book]
+----------
+那是什麼?	What is that?
+那是[水果]	That is a [fruit]
+----------
+那是什麼[水果]?	What [fruit] is that?
+那是[蘋果]	That is an [apple]
+----------
+這是幾支[筆]?	How many [pens] are there?
+這是[三]支[筆]	There are [3] [pens]
+----------
+你有沒有[字典]?	Do you have a dictionary?
+我有[字典]	I have a dictionary
+----------
+你有幾本[字典]?	How many dictionary do you have?
+我有[三]本[字典]	I have 3 dictionaries
+----------
+這本[字典]是你的嗎?	Is this your [dictionary]?
+是的,這本[字典]是我的	Yes, this is my [dictionary]
+----------
+有賣[蘋果]嗎?	Do you sell [apple]?
+有	Yes
+----------
+一個[蘋果]多少錢?	How much for an [apple]?
+[十]元一個	[10] dollars for one
+我要[五]個	I want [five]
+----------
+[葡萄]一斤多少錢?	How much for one pound of [grape]?
+[八]塊一斤	[8] dollars per pound
+----------
+你要幾斤?	How many pound do you want?
+我要[兩]斤	I want [2] pounds
+----------
+[葡萄]怎麼賣?	How do you sell [watermelon]?
+[八]塊一斤,你要幾斤?	[8] dollars per pound. How many pound do you wnat?
+[兩]斤	[2] pounds
+這是你的[葡萄]	Here is your [grape]
+這是[一百]元	Here is [100] dollars.
+----------
+[葡萄]怎麼賣?	How do you sell [watermelon]?
+[八]塊一斤,你要幾斤?	[8] dollars per pound. How many pound do you wnat?
+[兩]斤	[2] pounds
+這是你的[葡萄]	Here is your [grape]
+我沒有零錢,這是[一百]元	I don't have change, here is [100] dollars.
+----------
+您要買什麼?	What would you like to buy?
+我想買[紙]和[信封]	I would like to buy [paper] and [envelopes]
+----------
+這種[紙]是[五十]元一[包],那種紙是[六十]元一[包]	This kind of [paper] is [50] dollars a [pack] and that one is [60] dollars a [pack]
+----------
+哪一種比較好呢?	Which kind is better?
+[貴]得比較好	The more [expensive] one is better.
+----------
+[信封]要多少錢呢?	How much are these [envelopes]?
+[兩]塊錢一個	[2] dollars each.
+----------
+一共是多少錢?	How much is that altogether?
+一共是[六十二]元	That will be [62] dollars.
+==========
+咖啡廳+茶室|
+++++++++++
+你喜歡[喝][咖啡]嗎?	Do you like to [drink] [coffee]?
+我不喜歡[喝][咖啡]	I don't like to [drink] [coffee].
+我喜歡[喝][茶]	I like to [drink] [tea].
+----------
+你喜歡[喝][咖啡]嗎?	Do you like to [drink] [coffee]?
+我喜歡[喝][咖啡]	I like to [drink] [coffee].
+----------
+你喜歡[喝][紅茶]還是[綠茶]?	Do you like to [drink] [black tea] or [green tea]?
+[綠茶],我常[喝][綠茶]	[Green tea], I often [drink] [green tea]
+----------
+你喝過[綠茶]嗎?	Have you drunk [green tea]?
+沒有	No
+----------
+你[喝]過[綠茶]嗎?	Have you [drunk] [green tea]?
+我沒有[喝]過[綠茶]	I haven't [drunk] [green tea]
+----------
+[綠茶][貴]不[貴]?	Is [green tea] [expensive]?
+[綠茶]不[便宜]	[Green tea] is not [cheap]
+----------
+[綠茶][貴]不[貴]?	Is [green tea] [expensive]?
+[綠茶]很[貴]	[Green tea] is very [expensive]
+----------
+[綠茶][好喝]嗎?	Is [green tea] [good to drink]?
+我覺得很[好喝]	I think it is really [good to drink]
+----------
+[日本]的[綠茶]很[有名]	[Japan]'s [green tea] is very [famous]
+看來你對[茶]很了解	It seems that you know a lot about [tea]
+----------
+你[餓]不[餓]?	Are you [hungry]?
+不[餓]	No, I'm not [hungry]
+----------
+你[渴]不[渴]?	Are you [thirsty]?
+我很[累],而且有點[渴]	I'm very [tired]. I'm also a little [thirsty]
+----------
+你[渴]不[渴]?	Are you [thirsty]?
+[今天]太[忙]	[Today] is too [busy]
+我又[渴]又[累]	I'm both [thirsty] and [hungry]
+----------
+我們去[咖啡廳][喝]點東西吧?	Let's go to the [Cofe] to [drink] somethinkg!
+好,我同意	All right, I'm ok with it.
+----------
+我去一下[廁所]	I go to the [restroom] first
+等一下在[咖啡廳]見	Let's meet at the [Cofe] in a moment
+我在[門口]等你	I'll wait for you at the [entrance]
+----------
+[先生],你要[喝]點什麼?	[Sir], what do you want to [drink]?
+一杯[拿鐵]	A cup of [latte]
+----------
+你們有[茶]嗎?	Do you have [tea]?
+有,有[紅茶]和[綠茶]	Yes, we have [black tea] and [green tea]
+----------
+有[啤酒]嗎?	Do you have [beer]?
+對不起,我們沒有	Sorry, we don't have.
+----------
+[先生],你要[喝]點什麼?	[Sir], what do you want to [drink]?
+一杯[拿鐵]和一壺[綠茶]	A cup of [latte] and a pot of [tea]
+----------
+去喝點[茶]吧	Shall we have [tea]?
+附近有[咖啡廳]嗎?	Is there a cafe here?
+----------
+[先生],你要[喝]點什麼?	[Sir], what do you want to [drink]?
+一杯[拿鐵]	A cup of [latte]
+在這裡用	For here
+----------
+[先生],你要[喝]點什麼?	[Sir], what do you want to [drink]?
+一杯[拿鐵]	A cup of [latte]
+帶走	To go
+----------
+[先生],你要[喝]點什麼?	[Sir], what do you want to [drink]?
+我要[可樂]	I'd like a  a [coke]
+----------
+[先生],你要[喝]點什麼?	[Sir], what do you want to [drink]?
+請給我[可樂]	I'd like a  a [coke], please
+----------
+[先生],你要[喝]點什麼?	[Sir], what do you want to [drink]?
+我要一杯[熱][咖啡]	I'd like a hot coffee
+----------
+你[早餐]要吃什麼?	What do you want for [breakfast]?
+一杯[咖啡]	A cup of [coffee] please.
+==========
+餐廳|
+++++++++++
+你喜歡[吃]什麼?	What do you like to [eat]?
+我喜歡[吃][水餃]	I like [dumplings]
+----------
+你[吃]過[烤鴨]沒有?	Have you ever [eaten] [roast duck]?
+沒[吃]過	No, I haven't [eaten].
+----------
+[好吃]嗎?	Is it [delicious]?
+[好吃],你應該嘗一嘗	[Delicious], you should try.
+----------
+你知道這是什麼菜嗎?	Do you know what kind of [dish] is it?
+這是[水餃]	This is [dumplings]
+----------
+[菜單]上有哪些[主菜]?	What [entries] are on the [menu]?
+有[魚]、[豬肉]和[雞]	There are [fish], [pork], and [chicken]
+----------
+你常[吃]什麼?	What kind of food do you often [eat]?
+[飯]和[饅頭]	[Rice] and [steamed bun].
+----------
+你們[兩]位要[吃]什麼?	What would you [two] like to [eat]?
+有[菜單]嗎?	Do you have a [menu]?
+先看一下[菜單]	Have a look at the [menu] first
+----------
+你們[兩]位要[吃]什麼?	What would you [two] like to [eat]?
+一個[拌黃瓜]和[烤鴨]	A [cucumber salad] and a [roast duck]
+----------
+要什麼[湯]	What [soup] do you want?
+[番茄湯]	A [tomato soup]
+----------
+他不會用[筷子]	He can't use [chopstiks]
+請給我[湯匙]和[叉子]	Please give me a [spoon] and [fork]
+----------
+還要什麼嗎?	Do you want something else?
+還要一碗[飯]	And a bowl of [rice]
+----------
+還要什麼嗎?	Do you want something else?
+不要了	No
+----------
+這是一家[四川][餐廳]嗎?	Is this a [Sichuan] [restaurant]?
+聽說你喜歡吃[辣的]	I've been told you like to eat [spicy]
+今天請你吃[川菜]	Today I invite you to eat [Sichuan food]
+----------
+你喜歡吃[甜的]嗎?	Do you like [sweet] food?
+不,我喜歡吃[鹹的]	No, I like [salty] food.
+----------
+我點了[沙拉]	I ordered [salad]
+----------
+[小姐],有[鹽]嗎?	[Waitress], do you have some [salt]?
+可以給我一點[鹽]嗎?	Please give me some [salt]
+----------
+用[信用卡][結帳]可以嗎?	Can I use [credit card] to [pay the bill]?
+不行,我們只收[現金]	No, we only accept [cash].
+----------
+請喝[茶]	Please have some [tea]
+----------
+你們這邊什麼菜最好吃?	What is your best dish?
+我們有[烤鴨],[沙拉]也不錯	We have [roast duck]. [Salad] is also good.
+----------
+需要預訂嗎?	Do I need a reservation?
+----------
+我想要預訂	I'd like to make a reservation
+今晚[六]點我想預訂[五]個人的座位	I'd like to reserve a table for [5] people at [6]pm tonight.
+幾位?	How many people?
+[兩]個人	A table for [2] people, please
+----------
+請結帳	The check, please
+可以用[信用卡]嗎?	Do you accept [credit cards]?
+----------
+請給我[發票]	Please give me the [receipt]
+----------
+今天有什麼特別的菜?	What specialties do you have for today?
+[粉蒸牛肉]好不好? 是我們的名菜	How about [steamed beef]? It is the specialty of the house.
+我不想吃[牛肉]	I don't want to eat [beef]
+==========
+|聊天
+++++++++++
+你的[太太]在[家]嗎?	Is your [wife] [at home]?
+在	Yes
+----------
+你的[太太]在[家]嗎?	Is your [wife] [at home]?
+不在	No	
+----------
+這是[我的][太太]	This is [my] [wife]
+----------
+你[姐姐]是做什麼的?	What does your [sister] do?
+[她]是[醫生]	[She] is a [doctor]
+----------
+[她]在哪家[醫院]工作	In which [hospital] does [she] work?
+[她]在[北京醫院]工作	[She] works in [Beijing Hospital]
+----------
+你[姐姐]是做什麼的?	What does your [sister] do?
+[她]是[醫生]	[She] is a [doctor]
+[她]在哪家[醫院]工作	In which [hospital] does [she] work?
+[她]在[北京醫院]工作	[She] works in [Beijing Hospital]
+----------
+你是[學生]嗎?	Are you a [student]?
+是的,我是[大學生]	Yes, I'm a [university student]
+----------
+你是哪個[大學]的[學生]	You are a [student] from which university?
+我是[台灣大學]的[學生]	I'm a [National Taiwan University] [student]
+----------
+你住哪裡?	Where do you live?
+我住[大學路][十五號]	I live [15] [University Road]
+----------
+你是住[樓房]還是[平房]	Do you live in a [building] or in a [house]
+是[樓房]	In a [building]
+----------
+你住在哪一[層]	On what [floor] do you live?
+我住[十三層]	The [13th floor]
+----------
+你能給我[你的][電話]嗎?	Can you tell me [your] [phone number]?
+可以,這是我的[名片]	Yes, this is my [business card]
+----------
+[我]正在[看電視]	[I]'m [watching TV]
+----------
+你來[台灣]多久了	How long have you been in [Taiwan]?
+[一個月]	[One month]
+----------
+您是在[上班]，還是[念書]	Are you [working] now or still [studying]?
+我還在[念書]	I am still [studying].
+----------
+您在做什麼呢?	What are you doing now?
+我正在看一本[書]	I'm reading a [book].
+----------
+這本[書]是誰的	Whose [book] is this?
+這本[書]是[我]的	This [book] is [mine].
+----------
+這是什麼[書]?	What kind of [book] is it?
+這是一本介紹[台灣]的[書]	It is a [book] introducing [Taiwan].
+----------
+可以借我這本[書]嗎?	Could you lend this [book] to me?
+當然可以	Of course!
+----------
+你每天幾點鐘[下班]呢?	What time do you [get off work] everyday?
+我每天下午[五]點[下班]	I [get off work] at [five] everyday.
+----------
+你一天要[工作]幾小時呢?	How many hours do you have to [work] each day?
+一天[工作][八]個小時	I [work] for [eight] hours each day.
+==========
+書店|
+++++++++++
+這是什麼[書]?	What kind of [book] is it?
+這是一本介紹[台灣]的[書]	It is a [book] introducing [Taiwan].
+==========
+辦公室|
+++++++++++
+你每天幾點鐘[下班]呢?	What time do you [get off work] everyday?
+我每天下午[五]點[下班]	I [get off work] at [five] everyday.
+----------
+你一天要[工作]幾小時呢?	How many hours do you have to [work] each day?
+一天[工作][八]個小時	I [work] for [eight] hours each day.
+==========
+公車站+火車站+地鐵|
+++++++++++
+你怎麼來[學校][上課]的?	How do you get to [school] for [classes]
+我[走路]來的	I [walk]
+你呢?	And you?
+我[騎腳踏車]來的	I [ride bike]
+----------
+你怎麼來[學校][上課]的?	How do you get to [school] for [classes]
+我[走路]來的	I [walk]
+----------
+你[昨天]去哪?	Where did you go [yesterday]?
+我去[台北][玩]了	I went to [Taipei] to [have fun]
+你是[騎腳踏車]去的嗎?	Did you [ride bike] there?
+不,我是[坐計程車]去的	No, I [took taxi]
+----------
+你為什麼不坐[公車]	Why didn't you [take bus]?
+車上人太[多]而且太[慢]	There are too [many] people on the bus, and it is too [slow]
+----------
+你可以坐[捷運]去[台北]	You could take [metro] to [Taipei]
+我不會坐[捷運]	I don't know how to take a [metro]
+----------
+我坐[船]回來	I took a [boat] back
+----------
+你知道[天安門]在哪嗎?	Do you know where [TianAnmen] is?
+在[市中心]	In the [city center].
+----------
+[故宮]是不是在[天安門][北邊]	Is the [Forbidden City] located to the [north] of [TianAnmen]?
+----------
+[體育館]在什麼地方	Where is the [gym]?
+在[動物園]和[圖書館]中間	Between the [zoo] and the [library]
+----------
+[火車站][附近]有沒有[餐廳]?	Are there some [restaurants] [near] [train station]
+有,[火車站][旁邊]有一間[餐廳]	Yes, there is a [restaurant] [next to] [train station]
+----------
+[火車站][對面]是什麼地方?	What is the place [across] from the [train station]
+一間[飯店],[前面]是[停車場]	A [hotel], and there is a [parking lot] [in front]
+----------
+[哈佛]離這裡[遠]不[遠]?	Is the [Harvard University] [far] from here?
+不[遠],就在[MIT][西]邊	Not [far], just on the [west] of [MIT]
+----------
+這裡到[MIT]有多遠?	How far is [MIT] from here?
+大約有[三]公里	About [3] kilometers
+[開車]要多久時間?	How long does it take [by car]?
+需要[半][小時]	[Half] an [hour]
+----------
+請問去[哈佛]要怎麼走?	Excuse me, how can I go to [Harvard University]?
+[直走][五][分鐘]就到了	[Go straight] for [5] [minutes] and you'll arrive it
+----------
+請問去[哈佛]要怎麼走?	Excuse me, how can I go to [Harvard University]?
+[直走]到[十字路口]再[右]轉,走[五][分鐘]就到了	[Go straight], at the [crossroads], turn [right], walk [5] [minutes] and you'll arrive it
+----------
+請問,這裡可以[停車]嗎?	Excuse me, can I [park my car] here?
+不行/可以	No/Yes
+----------
+[火車站]在哪裡呢?	Where is the [train station]?
+----------
+最近的[火車站]在哪裡呢?	Where is the nearest [train station]?
+----------
+去[火車站]要怎麼走?	How do I get to the [train station]?
+----------
+去[台灣大學]要在哪一站下?	Where am I supposed to get off for [National Taiwan University]?
+----------
+去[台北]是這一[月台]嗎?		Is this the right [platform] for the train to [Taipei]?
+----------
+請給我[公車]路線圖	May I have a [bus] route map?
+----------
+您要上哪去?	Where are your going?
+我要去[公園][運動]	I'm going to the park to exercise.
+----------
+我要去[台北],請問下一班[火車]什麼時候開?	I would like to go to [Taipei]. May I ask when the next [train] departs?
+[十]點[三十]分開	It departs at [ten] [thirty].
+----------
+一張[票]多少錢?	How much is one [ticket]?
+你要[來回票],還是[單程票]?	Would you like a [round trip ticket] or [one way ticket]?
+我要[單程票]	I would like a [one way ticket].
+[九十]元,這是你的[票]	[90] dollars. Here is your [ticket]
+----------
+請問這附近有[郵局]嗎?	Is there any [post office] around here?
+在[前面],走[五]分鐘就到了	It's right [up ahead]. Just walk for about [5] minutes and you will be right there.
+==========
+郵局|
+++++++++++
+請問這附近有[郵局]嗎?	Is there any [post office] around here?
+在[前面],走[五]分鐘就到了	It's right [up ahead]. Just walk for about [5] minutes and you will be right there.
+----------
+我要[買郵票]	I would like to [buy stamps]
+請到[三]號窗口	Please go to window [3]
+==========
+|天氣+聊天
+++++++++++
+[明天]天氣怎樣?	How will be the weather [tomorrow]?
+[天氣預報]說是[晴天]	The [weather forecast] said: it is a [sunny day]
+----------
+[明天][有風]嗎?	Will [tomorrow] be [windy]?
+有[風]	Yes, it is [windy]
+----------
+[明天][冷]不[冷]	Will [tomorrow] be [cold]?
+[早上]有點[涼]	A little [cool] on the [morning]
+----------
+明天的[氣溫]是幾度?	What will be the [temperature] tomorrow?	
+最[高][五]度,最[低][一]度	The [highest] temperature will be [5] degrees, the [lowest] temperature is [1] degree
+----------
+[北京]的[冬天][冷]不[冷]?	Is [winter] in [Beijing] [cold]?
+[冷]極了	Extremely [cold]
+----------
+[台北][經常][下雨]嗎?	Does [Taipei] [rain] [often?
+[夏天][常常][下雨]	It [rains] [frequently] in [summer]
+----------
+[秋天]怎麼樣?	What about [autumn]?
+[秋天][涼快],不[冷]也不[熱]	[Autumn] is cool, neither [cold] or [hot]
+==========
+體育館|
+++++++++++
+你每天[運動]嗎?	Do you [exercise] everyday?
+對,我很喜歡[運動]	Yes, I really like [sports]
+----------
+你最喜歡什麼[運動]?	What's your favorite [sport]?
+我最喜歡[打籃球]	I like [playing basketball]
+----------
+你[籃球][打]得怎樣?	How good are you at [playing] [basketball]?
+[打]得[不錯]	I play [pretty good]
+----------
+你會[踢足球]嗎?	Can you [play football]?
+不會,但是我喜歡[看][足球比賽]	No, but I like to [watch] [football games]
+----------
+我每個[星期天]都去[體育場]	I go to the [stadium] every [Sunday]
+如果[買]不到[票],就[看電視]	If I can't [buy a ticket], I [watch TV]
+----------
+我是[足球]迷	I am a [soccer] enthusiast
+我喜歡[打籃球]	I like to [play basketball].
+==========
+服飾店|
+++++++++++
+我想給[爸爸]買件[衣服]	I want to buy a [cloth] for my [father]
+----------
+你想買什麼樣的[衣服]?	What kind of [cloth] do you want to buy?
+[白色][襯衫]	[White] [shirt]
+----------
+這兩件[一樣]大嗎?	Are those two the [same] size?
+一樣,都是[中號]	Yes, they are [medium size]
+----------
+你的[爸爸]比你[高]嗎?	Is your [father] [taller] than you?
+[他]比我[高][五]公分	[He] is [5] cm [taller] than me.
+----------
+你的[爸爸][胖]不[胖]?	Is your [father] [fat]?
+[他]比我[瘦]	[He] is [thinner] than me.
+[他]穿[大號]的比較[合適]	[Large size] would be a [fit] for [him]
+你們[商店]幾點[關門]?	What time does your [shop] [close]?
+[晚上][九點]	[9] [pm]
+==========
+醫院|
+++++++++++
+你哪裡不舒服?	What do you feel uncomfortable?
+我[頭痛]	I've got a [headache]
+----------
+你[發燒]了嗎?	Do you [have high temperature]?
+是的,剛剛量[三十八]度	Yes, I just took my temperature, 38 degrees.
+----------
+有沒有[咳嗽]?	Do you [cough]?
+[咳]得很[嚴重]	Yes, I [cough] [a lot]
+----------
+你[感冒]了	You [caught a cold]
+----------
+這是[處方籤],去[藥局]拿[藥]吧	Here is the [prescription]. Go to the [pharmacy] to get your [medicine]
+----------
+[醫生],這些[藥]怎麼吃?	[Doctor], how do I take the [medicine]
+一天吃[三]次,一次[一][顆],[飯後]吃	[3] times a day, [1] [dose] each time, [after eating]
+----------
+身體不舒服嗎?	Do you feel uncomfortable?
+我有一點[鼻塞]和[喉嚨痛]	I have a bit of a [stuffy nose] and [sore throat]
+----------
+醫生,我[發燒],是不是[感冒]了?	Doctor, I have a [fever]. Do I [have a code]?
+我用[聽診器]為你檢查一下	Let me check you thoroughly with my [stethoscope]
+----------
+你的[胃口]怎樣?	How's your [appetite]?
+[胃口]不好	My [appetite] is not very good
+----------
+有沒有[咳嗽]?	Do you have a [cough]?
+有點[咳嗽]	I have a little bit of [cough].
+----------
+我開個[藥方]給你,記得多[休息]	I'll give you a [prescription]. Remember to get a lot of [rest].
+==========
+廟+教堂+清真寺|
+++++++++++
+你信教嗎?	Do you have religion?
+我是一個[基督教]徒	I'm a [Christian]
+==========
+博物館+畫廊|
+++++++++++
+我想看[博物館]	I'd like to visit the [museum].
+走吧!	Let's go!
+----------
+有沒有[導覽手冊]	May I have a [brochure]?
+==========
+酒吧+酒廠|
+++++++++++
+去喝兩杯怎樣?	How about going to have a drink?
+好啊	Sure
+----------
+有什麼[啤酒]?	What kind of [beer] do you have?
+----------
+來一瓶[啤酒]	A bottle of [beer], please
+----------
+請再來一杯[啤酒]	Another mug of [beer], please
+----------
+乾杯	Toast!
+----------
+再喝點[啤酒],如何?	How about another beer?
+夠了	I've had enough
+----------
+我的酒量很小	I can't drink much
+不能再喝了	I can't drink any more
+==========
+家具店|
+++++++++++
+您想要買什麼樣的[家具]? [沙發]還是[書櫃]呢?	What kind of [furniture] would you like to buy? A [sofa] or a [bookshelf]?
+我只是看看	I'm just looking.
+----------
+這[沙發]樣式很不錯,要多少錢?	This [sofa]'s style is not bad, how much is it?
+這[沙發]不貴,只要[八]千元	This [sofa] is not expensive. It is only [8000] dollars.
+----------
+那[餐桌]的材質是什麼呢?	What is that [dining table] made of?
+那[餐桌]是用[木頭]做的	That [dining table] is made out of the [wood].
+==========
+公寓|
+++++++++++
+請問[房租]一個月多少錢? 要不要[押金]?	May I ask how much the [rent] is each month? Do I need to put down a [security deposit]?
+[房租]一個月[一萬]塊錢,[押金]要[三萬]元	The [rent] is [10,000] dollars per month. The [security deposit] is [30,000] dollars.
+----------
+這裡的[窗簾]、[地毯]都是[新]的	The [draperies] and [carpet] are [new].
+----------
+這裡的環境怎麼樣?	What's the area like around here?
+這裡的環境非常[安靜]	This is a very [quiet] area.
