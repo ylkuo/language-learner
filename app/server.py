@@ -24,13 +24,29 @@ def get_action_concept_category(concept):
 	cmd = "SELECT a.action_id, a.category FROM action_concept AS a, \
 			concept AS b WHERE a.concept_id = b.id AND b.name = '%s'" % (concept)
 	action_res = db.query_db(cmd)
+	# or the similar concepts of the concept are in the action
 	return action_res
 
 def get_location_concept_category(concept):
 	cmd = "SELECT a.location_id, a.category FROM location_concept AS a, \
 			concept AS b WHERE a.concept_id = b.id AND b.name = '%s'" % (concept)
 	location_res = db.query_db(cmd)
+	# or the similar concepts of the concept are in the location
 	return location_res
+
+def get_location_ids(locations):
+	cmd = "SELECT id, chinese_name FROM location"
+	location_res = db.query_db(cmd)
+	location_ids = filter(lambda x: x[1].encode('utf-8') in locations, location_res)
+	location_ids = map(lambda x: x[0], location_ids)
+	return location_ids
+
+def get_action_ids(actions):
+	cmd = "SELECT id, chinese_name FROM action"
+	action_res = db.query_db(cmd)
+	action_ids = filter(lambda x: x[1].encode('utf-8') in actions, action_res)
+	action_ids = map(lambda x: x[0], action_ids)
+	return action_ids
 
 def add_dialog(dialog, difficulty, action_category, location_category):
 	cmd = "SELECT * FROM dialog WHERE content = \"%s\"" % (dialog)
@@ -62,14 +78,29 @@ def get_location(geo):
 	json = {}
 	venues = location.get_venues(geo_lat, geo_long)
 	output = []
+	cmd = "SELECT DISTINCT a.location_id, b.name FROM \
+			dialog_location_category AS a, location AS b \
+			WHERE a.location_id = b.id"
+	location_res = db.query_db(cmd)
+	valid_location = map(lambda x: x[1], location_res)
 	for chinese, display in venues:
-		output.append({'display':display, 'chinese':chinese})
+		cmd = "SELECT a.concept_id FROM location_concept AS a, \
+				location AS b WHERE a.location_id = b.id AND \
+				b.chinese_name = '%s'" % (chinese)
+		concept_res = db.query_db(cmd)
+		if (display in valid_location) and (len(concept_res) > 8):
+			output.append({'display':display, 'chinese':chinese})
 	cmd = "SELECT * FROM location"
 	location_res = db.query_db(cmd)
 	for venue in location_res:
 		json_venue = {'display':venue[1], 'chinese':venue[2]}
 		if json_venue['display'] not in map(lambda x: x['display'], output):
-			output.append(json_venue)
+			cmd = "SELECT a.concept_id FROM location_concept AS a, \
+					location AS b WHERE a.location_id = b.id AND \
+					b.chinese_name = '%s'" % (venue[2])
+			concept_res = db.query_db(cmd)
+			if (venue[1] in valid_location) and (len(concept_res) > 8):
+				output.append(json_venue)
 	json['locations'] = output
 	return flask.jsonify(json)
 
@@ -85,9 +116,15 @@ def get_action(venue):
 	action_res = db.query_db(cmd)
 	output = []
 	output.append({'display':'anything', 'chinese':u'任何事'})
+	cmd = "SELECT DISTINCT a.action_id, b.english_name FROM \
+			dialog_action_category AS a, action AS b \
+			WHERE a.action_id = b.id"
+	valid_res = db.query_db(cmd)
+	valid_action = map(lambda x: x[1], valid_res)
 	for action in action_res:
 		chinese, display = action
-		output.append({'display':display, 'chinese':chinese})
+		if display in valid_action:
+			output.append({'display':display, 'chinese':chinese})
 	json['actions'] = output
 	return flask.jsonify(json)
 
@@ -98,7 +135,6 @@ def get_concept(venue, action, user_id):
 	cmd = "SELECT id FROM location WHERE chinese_name = '%s'" \
 			% (venue)
 	location_id = db.query_db(cmd)[0][0]
-	# not only from location
 	cmd = "SELECT concept_id FROM user_location_concept \
 			WHERE user_id = %s AND location_id = %s" \
 			% (user_id, location_id)
@@ -112,10 +148,13 @@ def get_concept(venue, action, user_id):
 	category_offset = 0
 	categories = {}
 	# find related concepts for location
-	cmd = "SELECT a.id, a.name, b.category, a.difficulty FROM concept AS a, \
-			location_concept AS b WHERE b.location_id = %s AND \
-			a.id = b.concept_id ORDER BY a.difficulty" \
-			% (location_id)
+	# filter concepts without dialog
+	cmd = "SELECT DISTINCT a.id, a.name, b.category, a.difficulty FROM \
+			concept AS a, location_concept AS b, \
+			dialog_location_category AS c WHERE b.location_id = %s AND \
+			a.id = b.concept_id AND c.location_id = %s AND \
+			c.category = b.category ORDER BY a.difficulty" \
+			% (location_id, location_id)
 	concept_res = db.query_db(cmd)
 	output = []
 	from math import log
@@ -151,12 +190,14 @@ def get_concept(venue, action, user_id):
 	else:
 		cmd = "SELECT action_id FROM location_action WHERE location_id = %s" \
 				% (location_id)
+	# filter concepts without dialog
 	for action_item in db.query_db(cmd):
 		action_id = action_item[0]
-		cmd = "SELECT a.id, a.name, b.category, a.difficulty FROM concept AS a, \
-				action_concept AS b WHERE b.action_id = %s AND \
-				a.id = b.concept_id ORDER BY a.difficulty" \
-				% (action_id)
+		cmd = "SELECT DISTINCT a.id, a.name, b.category, a.difficulty FROM concept AS a, \
+				action_concept AS b, dialog_action_category AS c WHERE \
+				b.action_id = %s AND a.id = b.concept_id AND c.action_id = %s \
+				AND c.category = b.category ORDER BY a.difficulty" \
+				% (action_id, action_id)
 		concept_res = db.query_db(cmd)
 		concept_list = []
 		for concept in concept_res:
@@ -223,8 +264,8 @@ def get_concept_info(concept):
 	json['concept'] = output
 	return flask.jsonify(json)
 
-@app.route('/'+root+'/concept/<concept>/dialog/<location>/<action>')
-def get_concept_dialog(concept, location, action):
+@app.route('/'+root+'/concept/<concept>/dialog/<location>/<action>/user/<user_id>')
+def get_concept_dialog(concept, location, action, user_id):
 	json = {}
 	cmd = "SELECT id, english FROM concept WHERE name = '%s'" % (concept)
 	concept_res = db.query_db(cmd)
@@ -232,6 +273,74 @@ def get_concept_dialog(concept, location, action):
 	concept_english = concept_res[0][1]
 	cmd = "SELECT id FROM location WHERE chinese_name = '%s'" % (location)
 	location_id = db.query_db(cmd)[0][0]
+	# check dialog for action first
+	if action != u'任何事':
+		cmd = "SELECT id FROM action WHERE chinese_name = '%s'" \
+				% (action)
+	else:
+		cmd = "SELECT action_id FROM location_action WHERE location_id = %s" \
+				% (location_id)
+	for action_item in db.query_db(cmd):
+		action_id = action_item[0]
+		cmd = "SELECT category FROM action_concept WHERE \
+				action_id = %s AND concept_id = %s" % (action_id, concept_id)
+		category_res = db.query_db(cmd)
+		if len(category_res) != 0:
+			category = category_res[0][0]
+			cmd = "SELECT b.id, b.content FROM dialog_action_category AS a, \
+					dialog AS b WHERE a.dialog_id = b.id AND \
+					a.action_id = %s AND a.category = %s ORDER BY b.difficulty" \
+					% (action_id, category)
+			dialog_res = db.query_db(cmd)
+			for dialog_item in dialog_res:
+				dialog_id = dialog_item[0]
+				dialog = dialog_item[1]
+				cmd = "SELECT a.view_count+COUNT(b.concept_id) FROM \
+						user_dialog AS a, user_location_dialog AS b WHERE \
+						a.user_id = %s AND b.user_id = %s AND a.dialog_id = %s \
+						AND b.dialog_id = %s" % (user_id, user_id, dialog_id, dialog_id)
+				view_res = db.query_db(cmd)
+				if len(view_res) > 0:
+					if view_res[0][0] > 5:
+						continue
+				matches = re.findall(r'\[\w+\]', \
+						dialog, flags=re.UNICODE)
+				matches = list(set(matches))
+				for match in matches:
+					match = match.replace('[', '').replace(']', '')
+					cmd = "SELECT a.category, b.english FROM \
+							action_concept AS a, concept AS b \
+							WHERE a.action_id = %s AND b.name = '%s' AND \
+							a.concept_id = b.id" % (action_id, match)
+					category_res = db.query_db(cmd)
+					if len(category_res) > 0:
+						if category == category_res[0][0]:
+							json['dialog_id'] = dialog_id
+							json['dialog'] = []
+							dialog = dialog.lower().replace('['+category_res[0][1]+']', '['+concept_english+']')
+							print category_res[0][1]
+							print concept_english
+							t = BingTranslate()
+							for sentence in \
+									dialog.replace('['+match+']', '['+concept+']').split('\n'):
+								chinese = sentence.split('\t')[0]
+								english = sentence.split('\t')[1]
+								cmd = "SELECT id FROM sentence WHERE sentence = '%s'" % (chinese)
+								sentence_res = db.query_db(cmd)
+								if len(sentence_res) == 0:
+									cmd = "INSERT INTO sentence (sentence) VALUES ('%s')" % (chinese)
+									db.query_db(cmd)
+									cmd = "SELECT id FROM sentence WHERE sentence = '%s'" % (chinese)
+									sentence_res = db.query_db(cmd)
+									filename = '/home/a33kuo/public_html/language-learner/audio/dialog/'+str(sentence_res[0][0])+'.wav'
+									t.get_speech(chinese.replace('[', '').replace(']', ''), filename, "zh-CHT")
+								audio_file = 'http://lime.csie.ntu.edu.tw/~a33kuo/language-learner/audio/dialog/'+str(sentence_res[0][0])+'.wav'
+								json['dialog'].append(\
+										{'chinese':chinese, 'english':english, 'audio':audio_file})
+							break
+				if len(json.keys()) > 0:
+					return flask.jsonify(json)
+	# if there is no dialog for action, use location
 	cmd = "SELECT category FROM location_concept WHERE \
 			location_id = %s AND concept_id = %s" % (location_id, concept_id)
 	category_res = db.query_db(cmd)
@@ -242,9 +351,17 @@ def get_concept_dialog(concept, location, action):
 				a.location_id = %s AND a.category = %s ORDER BY b.difficulty" \
 				% (location_id, category)
 		dialog_res = db.query_db(cmd)
-		if len(dialog_res) > 0:
-			dialog_id = dialog_res[0][0]
-			dialog = dialog_res[0][1]
+		for dialog_item in dialog_res:
+			dialog_id = dialog_item[0]
+			dialog = dialog_item[1]
+			cmd = "SELECT a.view_count+COUNT(b.concept_id) FROM \
+					user_dialog AS a, user_location_dialog AS b WHERE \
+					a.user_id = %s AND b.user_id = %s AND a.dialog_id = %s \
+					AND b.dialog_id = %s" % (user_id, user_id, dialog_id, dialog_id)
+			view_res = db.query_db(cmd)
+			if len(view_res) > 0:
+				if view_res[0][0] > 5:
+					continue
 			matches = re.findall(r'\[\w+\]', \
 					dialog, flags=re.UNICODE)
 			matches = list(set(matches))
@@ -259,10 +376,12 @@ def get_concept_dialog(concept, location, action):
 					if category == category_res[0][0]:
 						json['dialog_id'] = dialog_id
 						json['dialog'] = []
-						dialog = dialog.replace(category_res[0][1], concept_english)
+						dialog = dialog.lower().replace('['+category_res[0][1]+']', '['+concept_english+']')
+						print category_res[0][1]
+						print concept_english
 						t = BingTranslate()
 						for sentence in \
-								dialog.replace(match, concept).split('\n'):
+								dialog.replace('['+match+']', '['+concept+']').split('\n'):
 							chinese = sentence.split('\t')[0]
 							english = sentence.split('\t')[1]
 							cmd = "SELECT id FROM sentence WHERE sentence = '%s'" % (chinese)
@@ -278,6 +397,8 @@ def get_concept_dialog(concept, location, action):
 							json['dialog'].append(\
 									{'chinese':chinese, 'english':english, 'audio':audio_file})
 						break
+			if len(json.keys()) > 0:
+				break
 	return flask.jsonify(json)
 
 @app.route('/'+root+'/login/<email>')
@@ -315,6 +436,25 @@ def update_user_view_count(user_id, concept):
 	json['view_count'] = view_count
 	return flask.jsonify(json)
 
+@app.route('/'+root+'/user/<user_id>/dialog/<dialog_id>/view')
+def update_user_dialog_view_count(user_id, dialog_id):
+	json = {}
+	cmd = "SELECT * FROM user_dialog WHERE user_id = %s AND dialog_id = %s" \
+			% (user_id, dialog_id)
+	user_res = db.query_db(cmd)
+	if len(user_res) > 0:
+		cmd = "UPDATE user_dialog SET view_count = view_count + 1 \
+				WHERE user_id = %s AND dialog_id = %s" % (user_id, dialog_id)
+	else:
+		cmd = "INSERT INTO user_dialog (user_id, dialog_id, view_count) \
+				VALUES (%s, %s, 1)" % (user_id, dialog_id)
+	db.query_db(cmd)
+	cmd = "SELECT view_count FROM user_dialog WHERE user_id = %s AND dialog_id = %s" \
+			% (user_id, dialog_id)
+	view_count = db.query_db(cmd)[0][0]
+	json['view_count'] = view_count
+	return flask.jsonify(json)
+
 @app.route('/'+root+'/user/<user_id>/location/<venue>/concept/<concept>/view')
 def update_user_location_concept(user_id, venue, concept):
 	json = {}
@@ -331,6 +471,26 @@ def update_user_location_concept(user_id, venue, concept):
 	else:
 		cmd = "INSERT INTO user_location_concept (user_id, location_id, concept_id) \
 				VALUES (%s, %s, %s)" % (user_id, location_id, concept_id)
+		db.query_db(cmd)
+	json['location_id'] = location_id
+	return flask.jsonify(json)
+
+@app.route('/'+root+'/user/<user_id>/location/<venue>/dialog/<dialog_id>/concept/<concept>/view')
+def update_user_location_dialog(user_id, venue, dialog_id, concept):
+	json = {}
+	cmd = u"SELECT id FROM concept WHERE name = '%s'" % (concept)
+	concept_id = db.query_db(cmd)[0][0]
+	cmd = u"SELECT id FROM location WHERE chinese_name = '%s'" % (venue)
+	location_id = db.query_db(cmd)[0][0]
+	cmd = "SELECT * FROM user_location_dialog WHERE user_id = %s \
+			AND location_id = %s AND dialog_id = %s AND concept_id = %s" \
+			% (user_id, location_id, dialog_id, concept_id)
+	user_res = db.query_db(cmd)
+	if len(user_res) > 0:
+		pass
+	else:
+		cmd = "INSERT INTO user_location_dialog (user_id, location_id, dialog_id, concept_id) \
+				VALUES (%s, %s, %s, %s)" % (user_id, location_id, dialog_id, concept_id)
 		db.query_db(cmd)
 	json['location_id'] = location_id
 	return flask.jsonify(json)

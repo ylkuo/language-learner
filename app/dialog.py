@@ -2,7 +2,9 @@
 
 import os, re
 from postagger_zh.postagger import POSTagger
-from server import get_action_concept_category, get_location_concept_category, add_dialog
+from server import get_action_concept_category, \
+		get_location_concept_category, add_dialog, \
+		get_location_ids, get_action_ids
 
 data_path = os.path.abspath(__file__).replace(\
 		os.path.basename(__file__), '').replace(\
@@ -25,7 +27,8 @@ class Dialog():
 			for dialog in dialogs.split('----------\n'):
 				dialog = dialog.strip()
 				difficulty = self.calculate_dialog_difficulty(dialog)
-				action_category, location_category =  self.find_associate_category(dialog)
+				action_category, location_category = \
+						self.find_associate_category(dialog, locations, actions)
 				add_dialog(dialog, difficulty, action_category, location_category)
 				
 
@@ -40,12 +43,16 @@ class Dialog():
 			segments =  self.tagger.tag(\
 					chinese.replace('[', '').replace(']', '').decode('utf-8'))
 			num_segments += len(segments)
-		return num_slots*(num_segments*len(sentences))
+		return (num_slots*2+num_segments)*len(sentences)
 
-	def find_associate_category(self, dialog):
+	def find_associate_category(self, dialog, locations, actions):
 		sentences = dialog.split('\n')
 		action_category = []
 		location_category = []
+		location_ids = get_location_ids(locations)
+		action_ids = get_action_ids(actions)
+		#print "-----"
+		#print location_ids
 		for sentence in sentences:
 			chinese = sentence.split('\t')[0].strip()
 			english = sentence.split('\t')[1].strip()
@@ -57,6 +64,9 @@ class Dialog():
 					match.replace('[', '').replace(']', '').encode('utf-8')))
 				location_category.extend(get_location_concept_category(\
 					match.replace('[', '').replace(']', '').encode('utf-8')))
+		#print location_category
+		location_category = filter(lambda x: x[0] in location_ids, location_category)
+		action_category = filter(lambda x: x[0] in action_ids, action_category)
 		return (action_category, location_category)
 
 if __name__ == '__main__':

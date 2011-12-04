@@ -40,19 +40,20 @@ class ConceptCategory():
 
 if __name__ == '__main__':
 	concept_category = ConceptCategory()
-	'''
 	for concept in \
 			concept_category.get_category_from_sim(\
-			[u'公車', u'火車', u'船', u'飛機']):
+			#[u'公車', u'火車', u'船', u'飛機']):
+			[u'魚']):
 		print concept[0].encode('utf-8')
 		print concept[1]
+	'''
 	for concept in \
 			concept_category.get_category_from_predict(\
 			[u'公車', u'火車', u'船', u'飛機']):
 		print concept[0].encode('utf-8')
 		print concept[1]
-	'''
 	for concept in \
-			concept_category.spread.row_named(u'不健康').top_items(n=20):
+			concept_category.spread.row_named(u'魚').top_items(n=20):
 		print concept[0].encode('utf-8')
 		print concept[1]	
+	'''

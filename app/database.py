@@ -78,10 +78,14 @@ def add_locations():
 	location = Location()
 	db = Database()
 	for chinese, display in location.chinese_to_display.items():
-		cmd = u"INSERT INTO location (name, chinese_name) \
-				VALUES ('%s', '%s')" % \
-				(display.decode('utf-8'), chinese.decode('utf-8'))
-		db.query_db(cmd)
+		cmd = u"SELECT * FROM location WHERE chinese_name = '%s'" \
+				% (chinese.decode('utf-8'))
+		location_res = db.query_db(cmd)
+		if len(location_res) == 0:
+			cmd = u"INSERT INTO location (name, chinese_name) \
+					VALUES ('%s', '%s')" % \
+					(display.decode('utf-8'), chinese.decode('utf-8'))
+			db.query_db(cmd)
 
 def update_location_actions():
 	from re import escape
@@ -98,6 +102,7 @@ def update_location_actions():
 			action_res = db.query_db(cmd)
 			if len(action_res) > 0:
 				action_id = action_res[0][0]
+				is_bad = action_res[0][3]
 			else:
 				action_en = t.translate(action, "zh-CHT", "en")
 				cmd = u"INSERT INTO action (chinese_name, english_name) \
@@ -108,9 +113,11 @@ def update_location_actions():
 						% (action)
 				action_res = db.query_db(cmd)
 				action_id = action_res[0][0]
-			cmd = "INSERT INTO location_action (location_id, action_id) \
-					VALUES (%s, %s)" % (location_id, action_id)
-			db.query_db(cmd)
+				is_bad = action_res[0][3]
+			if is_bad != 1:
+				cmd = "INSERT INTO location_action (location_id, action_id) \
+						VALUES (%s, %s)" % (location_id, action_id)
+				db.query_db(cmd)
 
 def update_location_concepts():
 	"""
@@ -128,11 +135,13 @@ def update_location_concepts():
 			concept_res = db.query_db(cmd)
 			if len(concept_res) > 0:
 				concept_id = concept_res[0][0]
+				is_bad = concept_res[0][8]
 			else:
 				continue
-			cmd = "INSERT INTO location_concept (location_id, concept_id) \
-					VALUES (%s, %s)" % (location_id, concept_id)
-			db.query_db(cmd)
+			if is_bad != 1:
+				cmd = "INSERT INTO location_concept (location_id, concept_id) \
+						VALUES (%s, %s)" % (location_id, concept_id)
+				db.query_db(cmd)
 
 def update_action_concepts():
 	"""
@@ -143,18 +152,22 @@ def update_action_concepts():
 	cmd = "SELECT * FROM action"
 	action_res = db.query_db(cmd)
 	for item in action_res:
-		action_id, action_chinese, action_english = item
+		action_id, action_chinese, action_english, is_bad = item
+		if is_bad == 1:
+			continue
 		for concept in location.get_concept_for_venue(action_chinese):
 			cmd = u"SELECT * FROM concept WHERE name = '%s'" \
 					% (concept)
 			concept_res = db.query_db(cmd)
 			if len(concept_res) > 0:
 				concept_id = concept_res[0][0]
+				is_bad = concept_res[0][8]
 			else:
 				continue
-			cmd = "INSERT INTO action_concept (action_id, concept_id) \
-					VALUES (%s, %s)" % (action_id, concept_id)
-			db.query_db(cmd)
+			if is_bad != 1:
+				cmd = "INSERT INTO action_concept (action_id, concept_id) \
+						VALUES (%s, %s)" % (action_id, concept_id)
+				db.query_db(cmd)
 
 def cluster_concepts(context='location'):
 	"""
@@ -169,7 +182,10 @@ def cluster_concepts(context='location'):
 	for item in context_res:
 		concept_list = []
 		concept_matrix = []
-		context_id, context_name, context_chinese = item
+		if context == 'action':
+			context_id, context_chinese, context_name = item[:3]
+		elif context == 'location':
+			context_id, context_name, context_chinese = item
 		cmd = "SELECT b.name, b.id FROM %s_concept AS a, concept AS b \
 				WHERE a.%s_id = %s AND a.concept_id = b.id" \
 				% (context, context, context_id)
@@ -205,7 +221,7 @@ def cluster_concepts(context='location'):
 				db.query_db(cmd)
 				print concept[1].encode('utf-8')+' ',
 			print ''
-		print '----------'
+		print '----------'+context_chinese.encode('utf-8')+'----------'
 
 def download_concept_image():
 	"""
@@ -268,7 +284,13 @@ def update_concept_english():
 		db.query_db(cmd)
 
 if __name__ == '__main__':
-	#cluster_concepts('action')
-	download_concept_image()
+	#add_locations()
+	#update_location_actions()
+	#update_location_actions()
+	#update_location_concepts()
+	#update_action_concepts()
+	#cluster_concepts('location')
+	cluster_concepts('action')
+	#download_concept_image()
 	#download_concept_audio()
 	#update_concept_english()

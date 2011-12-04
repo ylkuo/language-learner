@@ -16,7 +16,7 @@
 		var action_chinese = decodeURI($.urlParam('action')).split('|')[0];
 		var url = $SCRIPT_ROOT + 
 				'/language-learner/concept/'+ concept_chinese+'/dialog/'+
-				location_chinese+'/'+action_chinese;
+				location_chinese+'/'+action_chinese+'/user/'+sessionStorage["user_id"];
 		$.ajax(url, {
 			type: 'GET',
 			dataType: 'json',
@@ -36,6 +36,30 @@
 					html = html.replace(/\]/g, "</font>");
 				}
 				$("#learn").html(html);
+				if(json.dialog_id > 0){
+					url = $SCRIPT_ROOT + 
+							'/language-learner/user/'+sessionStorage["user_id"]+'/dialog/'+json.dialog_id+'/view';
+					$.ajax(url, {
+						type: 'GET',
+						dataType: 'json',
+						success: function(json) {
+						},
+						error: function(xhr, msg, msg2) {
+							alert(xhr.status+','+msg+','+msg2);
+						}
+					});
+					url = $SCRIPT_ROOT + 
+							'/language-learner/user/'+sessionStorage["user_id"]+'/location/'+location_chinese+'/dialog/'+json.dialog_id+'/concept/'+concept_chinese+'/view';
+					$.ajax(url, {
+						type: 'GET',
+						dataType: 'json',
+						success: function(json) {
+						},
+						error: function(xhr, msg, msg2) {
+							alert(xhr.status+','+msg+','+msg2);
+						}
+					});
+				}
 			},
 			error: function(xhr, msg, msg2) {
 				alert(xhr.status+','+msg+','+msg2);
